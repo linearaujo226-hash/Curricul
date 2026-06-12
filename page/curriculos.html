@@ -203,7 +203,7 @@ link.click();
     JSON.stringify(historico)
     );
     
-    gerarCurriculo();
+    location.reload();
     
     }
 
@@ -213,7 +213,9 @@ link.click();
     function gerarCurriculo(){
     let mensagemErro = document.getElementById("mensagemErro");
     let plano = document.getElementById("plano").value;
-    let vaga = document.getElementById("vaga").value.toLowerCase();
+    let vaga =
+    (document.getElementById("vaga").value || "")
+    .toLowerCase();
 
     if(
     document.getElementById("nome").value.trim() === "" ||
@@ -410,8 +412,11 @@ link.click();
     let compatibilidadeATS = Math.min(score, 100);
     let compatibilidadeVaga = 0;
 
-    const palavrasVaga = vaga.split(/\s+/);
-    
+    const palavrasVaga =
+    vaga.trim() === ""
+    ? []
+    : vaga.split(/\s+/);
+        
     let palavrasFaltando = [];
     
     palavrasVaga.forEach(p => {
