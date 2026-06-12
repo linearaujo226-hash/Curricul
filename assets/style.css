@@ -62,3 +62,15 @@ input,textarea{
     border:1px solid #ddd;
     border-radius:8px;
 }
+.dark{
+    background:#111;
+    color:white;
+}
+
+.dark input,
+.dark textarea,
+.dark select{
+    background:#222;
+    color:white;
+    border:1px solid #555;
+}
