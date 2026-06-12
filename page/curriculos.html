@@ -42,17 +42,7 @@
     <button onclick="window.print()">📄 Baixar PDF</button>
 
     <div id="resultado"></div>
-    let foto = document.getElementById("foto").files[0];
-
-let fotoHTML = "";
-
-    ${fotoHTML}
-
-if(foto){
-    fotoHTML = `<img src="${URL.createObjectURL(foto)}"
-    style="width:120px;height:120px;border-radius:50%;">`;
-}
-
+   
 </div>
 
 <script>
@@ -98,11 +88,21 @@ if(score < 70){
     "Excelente currículo para sistemas ATS.";
 }
 
-<h3>💡 Sugestões</h3>
-<p>${sugestoes}</p>
+
+let foto = document.getElementById("foto").files[0];
+
+let fotoHTML = "";
+
+
+
+if(foto){
+    fotoHTML = `<img src="${URL.createObjectURL(foto)}"
+    style="width:120px;height:120px;border-radius:50%;">`;
+}
 
     
 document.getElementById("resultado").innerHTML = `
+${fotoHTML}
 
 <hr>
 
@@ -119,6 +119,9 @@ document.getElementById("resultado").innerHTML = `
 <p><strong>Cargo:</strong> ${cargo}</p>
 
 <h3>🎯 Score ATS: ${score}/100</h3>
+
+<h3>💡 Sugestões</h3>
+<p>${sugestoes}</p>
 
 <h3>🎓 Formação</h3>
 <p>${formacao}</p>
