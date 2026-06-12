@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gerador de Currículos ATS</title>
 <link rel="stylesheet" href="../assets/style.css">
-</head>
 
 <script>
 
@@ -63,19 +62,29 @@ campo.value = localStorage.getItem(id) || "";
 
 }
 
-window.onload = carregarDados;
+window.addEventListener("DOMContentLoaded", carregarDados);
 
 </script>
+
+</head>
     
 <body>
 
 <header>
     <h1>Contrata+ IA</h1>
 </header>
+    
+<h2 style="text-align:center;">
+🎯 Gerador de Currículos ATS Profissional
+</h2>
 
-<div class="container">
+<div class="container" style="max-width:900px;margin:auto;padding:20px;">
 
-    <h2>Gerador de Currículos ATS</h2>
+    <p>
+    Crie currículos profissionais com análise ATS,
+    pontuação automática e sugestões para aumentar
+    suas chances de contratação.
+    </p>
 
     <input type="text" id="nome" placeholder="Nome Completo" oninput="salvarDados()">
     
@@ -100,155 +109,153 @@ window.onload = carregarDados;
 
 
     <input type="file" id="foto" accept="image/*">
-    <button onclick="gerarCurriculo()">Gerar Currículo</button>
-    <button onclick="window.print()">📄 Baixar PDF</button>
+    <button onclick="gerarCurriculo()">
+    🚀 Gerar Currículo
+    </button>
+   
+    <button onclick="window.print()">
+    📄 Baixar PDF
+    </button>
+    
+    <button onclick="localStorage.clear(); location.reload();">
+    🗑️ Limpar Dados
+    </button>
 
     <div id="resultado"></div>
    
-</div>
-
-<script>
-
-function gerarCurriculo(){
-
-let nome = document.getElementById("nome").value;
-let email = document.getElementById("email").value;
-let telefone = document.getElementById("telefone").value;
-let cidade = document.getElementById("cidade").value;
-let cargo = document.getElementById("cargo").value;
-let linkedin = document.getElementById("linkedin").value;
-let formacao = document.getElementById("formacao").value;
-let experiencia = document.getElementById("experiencia").value;
-let habilidades = document.getElementById("habilidades").value;
-let conquistas = document.getElementById("conquistas").value;
-
-let score = 0;
-
-if(nome.length > 5) score += 10;
-if(email.includes("@")) score += 10;
-if(telefone.length >= 10) score += 10;
-if(cargo) score += 10;
-if(linkedin) score += 10;
-if(formacao.length > 20) score += 15;
-if(experiencia.length > 50) score += 20;
-if(habilidades.length > 20) score += 15;
-if(conquistas.length > 20) score += 20;
-
-if(score > 100){
-    score = 100;
-}
-let sugestoes = "";
-
-if(score < 70){
-    sugestoes =
-    "Adicione mais experiência, habilidades e conquistas.";
-}else if(score < 90){
-    sugestoes =
-    "Seu currículo está bom, mas pode melhorar.";
-}else{
-    sugestoes =
-    "Excelente currículo para sistemas ATS.";
-}
-let classificacao = "";
-
-if(score < 50){
-    classificacao = "🔴 Currículo Fraco";
-}else if(score < 80){
-    classificacao = "🟡 Currículo Bom";
-}else{
-    classificacao = "🟢 Currículo Excelente";
-}let classificacao = "";
-
-if(score < 50){
-    classificacao = "🔴 Currículo Fraco";
-}else if(score < 80){
-    classificacao = "🟡 Currículo Bom";
-}else{
-    classificacao = "🟢 Currículo Excelente";
-}let classificacao = "";
+    </div>
     
-
-if(score < 50){
-    classificacao = "🔴 Currículo Fraco";
-}else if(score < 80){
-    classificacao = "🟡 Currículo Bom";
-}else{
-    classificacao = "🟢 Currículo Excelente";
-}
+    <script>
     
-
-
-let foto = document.getElementById("foto").files[0];
-
-let fotoHTML = "";
-
-
-
-if(foto){
-    fotoHTML = `<img src="${URL.createObjectURL(foto)}"
-    style="width:120px;height:120px;border-radius:50%;">`;
-}
-
+    function gerarCurriculo(){
+    if(
+    document.getElementById("nome").value.trim() === "" ||
+    document.getElementById("email").value.trim() === ""
+    ){
+        alert("Preencha pelo menos Nome e E-mail.");
+        return;
+    }
     
-document.getElementById("resultado").innerHTML = `
-${fotoHTML}
-
-<hr>
-
-<h2>${nome}</h2>
-
-<p><strong>E-mail:</strong> ${email}</p>
-
-<p><strong>Telefone:</strong> ${telefone}</p>
-
-<p><strong>Cidade:</strong> ${cidade}</p>
-
-<p><strong>LinkedIn:</strong> ${linkedin}</p>
-
-<p><strong>Cargo:</strong> ${cargo}</p>
-
-<h3>🎯 Score ATS: ${score}/100</h3>
-
-<div style="
-width:100%;
-height:25px;
-background:#ddd;
-border-radius:20px;
-overflow:hidden;
-margin-bottom:15px;
-">
-
-<div style="
-width:${score}%;
-height:100%;
-background:#22c55e;
-">
-</div>
-
-</div>
-
-<h3>${classificacao}</h3>
-
-<h3>💡 Sugestões</h3>
-<p>${sugestoes}</p>
-
-<h3>🎓 Formação</h3>
-<p>${formacao}</p>
-
-<h3>💼 Experiência</h3>
-<p>${experiencia}</p>
-
-<h3>🚀 Habilidades</h3>
-<p>${habilidades}</p>
-
-<h3>🏆 Conquistas</h3>
-<p>${conquistas}</p>
-
-`;
-
-}
-
-</script>
+    let nome = document.getElementById("nome").value;
+    let email = document.getElementById("email").value;
+    let telefone = document.getElementById("telefone").value;
+    let cidade = document.getElementById("cidade").value;
+    let cargo = document.getElementById("cargo").value;
+    let linkedin = document.getElementById("linkedin").value;
+    let formacao = document.getElementById("formacao").value;
+    let experiencia = document.getElementById("experiencia").value;
+    let habilidades = document.getElementById("habilidades").value;
+    let conquistas = document.getElementById("conquistas").value;
+    
+    let score = 0;
+    
+    if(nome.length > 5) score += 10;
+    if(email.includes("@")) score += 10;
+    if(telefone.length >= 10) score += 10;
+    if(cargo) score += 10;
+    if(linkedin) score += 10;
+    if(formacao.length > 20) score += 15;
+    if(experiencia.length > 50) score += 20;
+    if(habilidades.length > 20) score += 15;
+    if(conquistas.length > 20) score += 20;
+    
+    if(score > 100){
+        score = 100;
+    }
+    let sugestoes = "";
+    
+    if(score < 70){
+        sugestoes =
+        "Adicione mais experiência, habilidades e conquistas.";
+    }else if(score < 90){
+        sugestoes =
+        "Seu currículo está bom, mas pode melhorar.";
+    }else{
+        sugestoes =
+        "Excelente currículo para sistemas ATS.";
+    }
+    
+    let classificacao = "";
+    
+    if(score < 50){
+        classificacao = "🔴 Currículo Fraco";
+    }else if(score < 80){
+        classificacao = "🟡 Currículo Bom";
+    }else{
+        classificacao = "🟢 Currículo Excelente";
+    }
+    
+    let foto = document.getElementById("foto").files[0];
+    
+    let fotoHTML = "";
+    
+    
+    
+    if(foto){
+        fotoHTML = `<img src="${URL.createObjectURL(foto)}"
+        style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid #2563eb;margin-bottom:15px;">`;
+    }
+        
+    let resultado = document.getElementById("resultado");
+        resultado.innerHTML = `
+    ${fotoHTML}
+    
+    <hr>
+    
+    <h2>${nome}</h2>
+    
+    <p><strong>E-mail:</strong> ${email}</p>
+    
+    <p><strong>Telefone:</strong> ${telefone}</p>
+    
+    <p><strong>Cidade:</strong> ${cidade}</p>
+    
+    <p><strong>LinkedIn:</strong> ${linkedin}</p>
+    
+    <p><strong>Cargo:</strong> ${cargo}</p>
+    
+    <h3>🎯 Score ATS: ${score}/100</h3>
+    
+    <div style="
+    width:100%;
+    height:25px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:15px;
+    ">
+    
+    <div style="
+    width:${score}%;
+    height:100%;
+    background:#22c55e;
+    ">
+    </div>
+    
+    </div>
+    
+    <h3>${classificacao}</h3>
+    
+    <h3>💡 Sugestões</h3>
+    <p>${sugestoes}</p>
+    
+    <h3>🎓 Formação</h3>
+    <p>${formacao}</p>
+    
+    <h3>💼 Experiência</h3>
+    <p>${experiencia}</p>
+    
+    <h3>🚀 Habilidades</h3>
+    <p>${habilidades}</p>
+    
+    <h3>🏆 Conquistas</h3>
+    <p>${conquistas}</p>
+    
+    `;
+    
+    }
+    
+    </script>
     
 </body>
 </html>
