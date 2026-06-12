@@ -17,7 +17,16 @@
 
 <h2>🎤 Simulador de Entrevista</h2>
 
-<input type="text" id="cargo" placeholder="Cargo Desejado">
+<input
+type="text"
+id="cargo"
+placeholder="Ex: Desenvolvedor Python, Analista de Dados, Gestor de Projetos">
+
+<textarea
+id="vaga"
+placeholder="Cole aqui a descrição da vaga"
+style="margin-top:10px;">
+</textarea>
 
 <select id="nivel">
 <option>Iniciante</option>
@@ -40,9 +49,20 @@ function gerarEntrevista() {
 let cargo =
 document.getElementById("cargo").value.trim();
 
+let vaga =
+document.getElementById("vaga").value.toLowerCase();
+
 let nivel =
 document.getElementById("nivel").value;
 
+if(cargo === ""){
+document.getElementById("resultado").innerHTML = `
+<div class="card">
+<h3>⚠️ Informe o cargo desejado.</h3>
+</div>
+`;
+return;
+}
 let perguntas = [
 
 "Fale sobre você.",
@@ -62,6 +82,41 @@ perguntas.push(
 "Como você utiliza APIs REST?"
 );
 
+}
+if(vaga.includes("liderança")){
+perguntas.push(
+"Descreva uma situação em que liderou uma equipe."
+);
+}
+
+if(vaga.includes("excel")){
+perguntas.push(
+"Qual seu nível de Excel e quais recursos utiliza?"
+);
+}
+
+if(vaga.includes("power bi")){
+perguntas.push(
+"Como você desenvolve indicadores e dashboards?"
+);
+}
+
+if(vaga.includes("sql")){
+perguntas.push(
+"Explique uma consulta SQL complexa que já criou."
+);
+}
+
+if(vaga.includes("gestão")){
+perguntas.push(
+"Como você organiza prioridades e metas?"
+);
+}
+
+if(vaga.includes("atendimento")){
+perguntas.push(
+"Como você lida com clientes difíceis?"
+);
 }
 
 if(cargo.toLowerCase().includes("dados")){
@@ -103,6 +158,24 @@ perguntas.push(
 );
 
 }
+let score = 50;
+
+if(nivel === "Intermediário"){
+score += 20;
+}
+
+if(nivel === "Sênior"){
+score += 40;
+}
+
+if(cargo.length > 3){
+score += 10;
+}
+
+if(score > 100){
+score = 100;
+}
+
 
 document.getElementById("resultado").innerHTML = `
 
@@ -131,6 +204,15 @@ ${perguntas.map(p => `
 <li>Resultados Obtidos</li>
 </ul>
 
+<h3>📋 Dicas ATS</h3>
+
+<ul>
+<li>Use resultados mensuráveis.</li>
+<li>Destaque tecnologias utilizadas.</li>
+<li>Mostre liderança e resolução de problemas.</li>
+<li>Utilize palavras-chave da vaga.</li>
+</ul>
+
 <h3>🏆 Aprovação Estimada</h3>
 
 <div style="
@@ -141,7 +223,7 @@ overflow:hidden;
 ">
 
 <div style="
-width:75%;
+width:${score}%;
 height:100%;
 background:#22c55e;
 ">
@@ -151,7 +233,7 @@ background:#22c55e;
 
 <p>
 Probabilidade estimada:
-<strong>75%</strong>
+<strong>${score}%</strong>
 </p>
 
 </div>
