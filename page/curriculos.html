@@ -61,6 +61,14 @@ campo.value = localStorage.getItem(id) || "";
 });
 
 }
+function carregarTema(){
+
+if(localStorage.getItem("tema") === "true"){
+document.body.classList.add("dark");
+}
+
+}
+    
 function trocarTema(){
 
 document.body.classList.toggle("dark");
@@ -71,8 +79,34 @@ document.body.classList.contains("dark")
 );
 }
 
-window.addEventListener("DOMContentLoaded", carregarDados);
+window.addEventListener("DOMContentLoaded", () => {
+carregarDados();
+carregarTema();
+});
+function baixarWord(){
 
+let conteudo =
+document.getElementById("resultado").innerHTML;
+
+let blob = new Blob(
+[conteudo],
+{type:"application/msword"}
+);
+
+let link =
+document.createElement("a");
+
+link.href =
+URL.createObjectURL(blob);
+
+link.download =
+"curriculo.doc";
+
+link.click();
+
+}
+
+    
 </script>
 
 </head>
@@ -134,6 +168,9 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     <button onclick="window.print()">
     📄 Baixar PDF
     </button>
+    <button onclick="baixarWord()">
+    📝 Baixar Word
+    </button>
     
     <button onclick="localStorage.clear(); location.reload();">
     🗑️ Limpar Dados
@@ -154,6 +191,24 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     </div>
     
     <script>
+    function removerHistorico(index){
+
+    let historico =
+    JSON.parse(localStorage.getItem("historico")) || [];
+    
+    historico.splice(index,1);
+    
+    localStorage.setItem(
+    "historico",
+    JSON.stringify(historico)
+    );
+    
+    gerarCurriculo();
+    
+    }
+
+
+        
     
     function gerarCurriculo(){
     let mensagemErro = document.getElementById("mensagemErro");
@@ -187,6 +242,7 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     let nivelATS = "";
         
     const palavrasATS = [
+
     "liderança",
     "gestão",
     "excel",
@@ -196,7 +252,22 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     "css",
     "sql",
     "projetos",
-    "resultados"
+    "resultados",
+
+    "power bi",
+    "agile",
+    "scrum",
+    "kanban",
+    "aws",
+    "azure",
+    "docker",
+    "git",
+    "github",
+    "react",
+    "node",
+    "typescript",
+    "linux"
+    
     ];
     
    let palavrasEncontradas = 0;
@@ -341,18 +412,33 @@ window.addEventListener("DOMContentLoaded", carregarDados);
 
     const palavrasVaga = vaga.split(/\s+/);
     
+    let palavrasFaltando = [];
+    
+    palavrasVaga.forEach(p => {
+    
+        if(
+            p.length > 4 &&
+            !textoCompleto.includes(p)
+        ){
+            palavrasFaltando.push(p);
+        }
+    
+    });
+    
     palavrasVaga.forEach(palavra => {
+    
         if(textoCompleto.includes(palavra)){
             compatibilidadeVaga++;
         }
+    
     });
     
     compatibilidadeVaga =
     Math.min(
-    Math.round(
-    (compatibilidadeVaga / Math.max(palavrasVaga.length,1))*100
-    ),
-    100
+        Math.round(
+            (compatibilidadeVaga / Math.max(palavrasVaga.length,1))*100
+        ),
+        100
     );
     
     let vagasIndicadas = [];
@@ -459,22 +545,46 @@ window.addEventListener("DOMContentLoaded", carregarDados);
         seloATS = "🥈 ATS Prata";
     }else{
         seloATS = "🥉 ATS Bronze";
-    }   
+    }
+
+    let ranking = "";
+
+    if(score >= 95){
+    ranking = "🏆 Top 1%";
+    }
+    else if(score >= 90){
+    ranking = "🥇 Top 10%";
+    }
+    else if(score >= 80){
+    ranking = "🥈 Top 25%";
+    }
+    else{
+    ranking = "🥉 Top 50%";
+    }
 
     let historico =
     JSON.parse(localStorage.getItem("historico")) || [];
     
+    if (
+    !historico.some(item =>
+    item.nome === nome &&
+    item.cargo === cargo
+    )
+    ){
     historico.push({
     nome,
     cargo,
     score,
     data:new Date().toLocaleDateString("pt-BR")
     });
-    
+    }
     localStorage.setItem(
     "historico",
     JSON.stringify(historico)
     );
+  
+
+        
             
         resultado.innerHTML = `
     ${fotoHTML}
@@ -497,6 +607,9 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     
     <p><strong>Cargo:</strong> ${cargo}</p>
     
+    <h3>🌎 Ranking Geral</h3>
+
+    <p>${ranking}</p>
     <h3>🎯 Score ATS: ${score}/100</h3>
     <h3>🏅 Nível ATS: ${nivelATS}</h3>
     
@@ -533,6 +646,21 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     </div>
 
     <h3>🎯 Compatibilidade com a Vaga</h3>
+    <div style="
+    background:#ddd;
+    height:25px;
+    border-radius:20px;
+    overflow:hidden;
+    ">
+    
+    <div style="
+    width:${compatibilidadeVaga}%;
+    height:100%;
+    background:#22c55e;
+    ">
+    </div>
+    
+    </div>
 
     <p>
     <strong>${compatibilidadeVaga}%</strong>
@@ -610,28 +738,63 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     ${pontosMelhoria.map(p => `<li>${p}</li>`).join("")}
     </ul>
 
+    <h3>📊 Resumo Geral</h3>
+
+    <table border="1" width="100%">
+    <tr>
+    <th>Indicador</th>
+    <th>Valor</th>
+    </tr>
+    
+    <tr>
+    <td>ATS</td>
+    <td>${score}%</td>
+    </tr>
+    
+    <tr>
+    <td>Empregabilidade</td>
+    <td>${empregabilidade}</td>
+    </tr>
+    
+    <tr>
+    <td>Compatibilidade</td>
+    <td>${compatibilidadeVaga}%</td>
+    </tr>
+    
+    </table>
+
     ${recursosPro}
     <h3>📚 Histórico</h3>
 
     <ul>
     ${
-    historico.map(item => `
+    historico.map((item,index) => `
     <li>
     ${item.data} -
     ${item.nome}
     (${item.cargo})
     Score ${item.score}
+    
+    <button onclick="removerHistorico(${index})">
+    ❌
+    </button>
+    
     </li>
     `).join("")
     }
     </ul>
 
+    <h3>🔎 Palavras Importantes da Vaga</h3>
+
+    <p>
+    ${palavrasFaltando.slice(0,10).join(", ")}
+    </p>
+
    
     `;
     
-    }
-    
-    </script>
-    
+}
+</script>
+
 </body>
 </html>
