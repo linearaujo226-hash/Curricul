@@ -1,1 +1,106 @@
-<html><head><link rel='stylesheet' href='../assets/style.css'></head><body><h1>Carta de Apresentação</h1><p>Estrutura pronta para expansão.</p></body></html>
+<html><head><link rel='stylesheet' href='../assets/style.css'></head><body><h1>Carta de Apresentação</h1><p>Estrutura pronta para expansão.</p></body></html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta de Apresentação</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+
+<header>
+<h1>Contrata+ IA</h1>
+</header>
+
+<div class="container">
+
+<h2>✉️ Gerador de Carta de Apresentação</h2>
+
+<input type="text" id="nome" placeholder="Seu Nome">
+
+<input type="text" id="empresa" placeholder="Nome da Empresa">
+
+<input type="text" id="cargo" placeholder="Cargo Desejado">
+
+<textarea id="experiencia" placeholder="Resumo da sua experiência"></textarea>
+
+<button onclick="gerarCarta()">
+Gerar Carta
+</button>
+
+<button onclick="window.print()">
+📄 Baixar PDF
+</button>
+
+<div id="resultado"></div>
+
+</div>
+
+<script>
+
+function gerarCarta(){
+
+let nome =
+document.getElementById("nome").value;
+
+let empresa =
+document.getElementById("empresa").value;
+
+let cargo =
+document.getElementById("cargo").value;
+
+let experiencia =
+document.getElementById("experiencia").value;
+
+document.getElementById("resultado").innerHTML = `
+
+<h2>Carta de Apresentação</h2>
+
+<p>
+Prezados recrutadores da <strong>${empresa}</strong>,
+</p>
+
+<p>
+Tenho grande interesse na vaga de
+<strong>${cargo}</strong>.
+</p>
+
+<p>
+Ao longo da minha trajetória profissional,
+desenvolvi experiências relevantes:
+</p>
+
+<p>
+${experiencia}
+</p>
+
+<p>
+Acredito que minhas habilidades e meu
+comprometimento podem contribuir
+positivamente para os objetivos da empresa.
+</p>
+
+<p>
+Agradeço pela oportunidade e coloco-me à
+disposição para uma entrevista.
+</p>
+
+<br>
+
+<p>
+Atenciosamente,
+</p>
+
+<p>
+<strong>${nome}</strong>
+</p>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
