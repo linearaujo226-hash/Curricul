@@ -20,7 +20,9 @@ const campos = [
 "formacao",
 "experiencia",
 "habilidades",
-"conquistas"
+"conquistas",
+"vaga"
+
 ];
 
 campos.forEach(id => {
@@ -47,7 +49,8 @@ const campos = [
 "formacao",
 "experiencia",
 "habilidades",
-"conquistas"
+"conquistas",
+"vaga"
 ];
 
 campos.forEach(id => {
@@ -139,7 +142,7 @@ link.click();
     <input type="text" id="cidade" placeholder="Cidade" oninput="salvarDados()">
 
     <input type="text" id="cargo" placeholder="Cargo Desejado" oninput="salvarDados()">
-    <textarea id="vaga" placeholder="Cole aqui a descrição da vaga"></textarea>
+    <textarea id="vaga" placeholder="Cole aqui a descrição da vaga" oninput="salvarDados()"></textarea>
     
     
     <input type="text" id="linkedin" placeholder="LinkedIn" oninput="salvarDados()">
@@ -168,6 +171,7 @@ link.click();
     <button onclick="window.print()">
     📄 Baixar PDF
     </button>
+    
     <button onclick="baixarWord()">
     📝 Baixar Word
     </button>
@@ -175,7 +179,11 @@ link.click();
     <button onclick="localStorage.clear(); location.reload();">
     🗑️ Limpar Dados
     </button>
-
+    
+    <button onclick="exportarHistorico()">
+    📤 Exportar Histórico
+    </button>
+    
     <button onclick="trocarTema()">
     🌙 Tema Escuro
     </button>
@@ -206,13 +214,44 @@ link.click();
     location.reload();
     
     }
+    function exportarHistorico(){
+
+    const historico =
+    localStorage.getItem("historico") || "[]";
+    
+    const blob =
+    new Blob([historico],
+    {type:"application/json"});
+    
+    const link =
+    document.createElement("a");
+    
+    link.href =
+    URL.createObjectURL(blob);
+    
+    link.download =
+    "historico.json";
+    
+    link.click();
+    
+    }
 
 
         
     
-    function gerarCurriculo(){
-    let mensagemErro = document.getElementById("mensagemErro");
-    let plano = document.getElementById("plano").value;
+   function gerarCurriculo(){
+
+    let resultado =
+    document.getElementById("resultado");
+
+    resultado.innerHTML =
+    "<h3>⏳ Gerando currículo...</h3>";
+
+    let mensagemErro =
+    document.getElementById("mensagemErro");
+
+    let plano =
+    document.getElementById("plano").value;
     let vaga =
     (document.getElementById("vaga").value || "")
     .toLowerCase();
@@ -278,8 +317,11 @@ link.click();
     `${cargo} ${habilidades} ${experiencia} ${conquistas}`.toLowerCase();
     
     palavrasATS.forEach(palavra => {
-        if(textoCompleto.includes(palavra)){
-            palavrasEncontradas++;
+        const regex =
+        new RegExp(`\\b${palavra}\\b`, "i");
+        
+        if(regex.test(textoCompleto)){
+        palavrasEncontradas++;
         }
     });
     
@@ -307,7 +349,7 @@ link.click();
         `;
     }
     
-    score += palavrasEncontradas * 2;
+    score += palavrasEncontradas * 3;
     if(nome.length > 5) score += 10;
     if(email.includes("@")) score += 10;
     if(telefone.length >= 10) score += 10;
@@ -408,7 +450,7 @@ link.click();
     }
     
         
-    let resultado = document.getElementById("resultado");
+   
     let compatibilidadeATS = Math.min(score, 100);
     let compatibilidadeVaga = 0;
 
@@ -583,11 +625,23 @@ link.click();
     data:new Date().toLocaleDateString("pt-BR")
     });
     }
+    if(historico.length > 20){
+        historico.shift();
+        
+    }
     localStorage.setItem(
     "historico",
     JSON.stringify(historico)
     );
-  
+
+    function limparTexto(texto){
+    return texto
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+    }    
+    nome = limparTexto(nome);
+    email = limparTexto(email);
+    cargo = limparTexto(cargo);
 
         
             
@@ -770,7 +824,6 @@ link.click();
 
     ${recursosPro}
     <h3>📚 Histórico</h3>
-
     <ul>
     ${
     historico.map((item,index) => `
