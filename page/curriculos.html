@@ -1,1 +1,115 @@
-<html><head><link rel='stylesheet' href='../assets/style.css'></head><body><h1>Gerador de Currículos ATS</h1><p>Estrutura pronta para expansão.</p></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Currículos ATS</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Contrata+ IA</h1>
+</header>
+
+<div class="container">
+
+    <h2>Gerador de Currículos ATS</h2>
+
+    <input type="text" id="nome" placeholder="Nome Completo">
+
+    <input type="email" id="email" placeholder="E-mail">
+
+    <input type="text" id="telefone" placeholder="Telefone">
+
+    <input type="text" id="cidade" placeholder="Cidade">
+
+    <input type="text" id="cargo" placeholder="Cargo Desejado">
+
+    <input type="text" id="linkedin" placeholder="LinkedIn">
+
+    <textarea id="formacao" placeholder="Formação Acadêmica"></textarea>
+
+    <textarea id="experiencia" placeholder="Experiência Profissional"></textarea>
+
+    <textarea id="habilidades" placeholder="Habilidades"></textarea>
+
+    <textarea id="conquistas" placeholder="Principais Conquistas"></textarea>
+
+    <button onclick="gerarCurriculo()">Gerar Currículo</button>
+
+    <div id="resultado"></div>
+
+</div>
+
+<script>
+
+function gerarCurriculo(){
+
+let nome = document.getElementById("nome").value;
+let email = document.getElementById("email").value;
+let telefone = document.getElementById("telefone").value;
+let cidade = document.getElementById("cidade").value;
+let cargo = document.getElementById("cargo").value;
+let linkedin = document.getElementById("linkedin").value;
+let formacao = document.getElementById("formacao").value;
+let experiencia = document.getElementById("experiencia").value;
+let habilidades = document.getElementById("habilidades").value;
+let conquistas = document.getElementById("conquistas").value;
+
+let score = 50;
+
+if(nome) score += 5;
+if(email) score += 5;
+if(telefone) score += 5;
+if(cidade) score += 5;
+if(cargo) score += 10;
+if(linkedin) score += 10;
+if(formacao) score += 10;
+if(experiencia) score += 15;
+if(habilidades) score += 10;
+if(conquistas) score += 15;
+
+if(score > 100){
+    score = 100;
+}
+
+document.getElementById("resultado").innerHTML = `
+
+<hr>
+
+<h2>${nome}</h2>
+
+<p><strong>E-mail:</strong> ${email}</p>
+
+<p><strong>Telefone:</strong> ${telefone}</p>
+
+<p><strong>Cidade:</strong> ${cidade}</p>
+
+<p><strong>LinkedIn:</strong> ${linkedin}</p>
+
+<p><strong>Cargo:</strong> ${cargo}</p>
+
+<h3>🎯 Score ATS: ${score}/100</h3>
+
+<h3>🎓 Formação</h3>
+<p>${formacao}</p>
+
+<h3>💼 Experiência</h3>
+<p>${experiencia}</p>
+
+<h3>🚀 Habilidades</h3>
+<p>${habilidades}</p>
+
+<h3>🏆 Conquistas</h3>
+<p>${conquistas}</p>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
