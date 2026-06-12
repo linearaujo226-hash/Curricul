@@ -77,25 +77,27 @@ window.onload = carregarDados;
 
     <h2>Gerador de Currículos ATS</h2>
 
-    <input type="text" id="nome" placeholder="Nome Completo">
+    <input type="text" id="nome" placeholder="Nome Completo" oninput="salvarDados()">
+    
 
-    <input type="email" id="email" placeholder="E-mail">
+    <input type="email" id="email" placeholder="E-mail" oninput="salvarDados()">
+    
+    <input type="text" id="telefone" placeholder="Telefone" oninput="salvarDados()">
+    
+    <input type="text" id="cidade" placeholder="Cidade" oninput="salvarDados()">
 
-    <input type="text" id="telefone" placeholder="Telefone">
+    <input type="text" id="cargo" placeholder="Cargo Desejado" oninput="salvarDados()">
+    
+    <input type="text" id="linkedin" placeholder="LinkedIn" oninput="salvarDados()">
+    
+    <textarea id="formacao" placeholder="Formação Acadêmica" oninput="salvarDados()"></textarea>
+    
+    <textarea id="experiencia" placeholder="Experiência Profissional" oninput="salvarDados()"></textarea>
+    
+    <textarea id="habilidades" placeholder="Habilidades" oninput="salvarDados()"></textarea>
+    
+    <textarea id="conquistas" placeholder="Principais Conquistas" oninput="salvarDados()"></textarea>
 
-    <input type="text" id="cidade" placeholder="Cidade">
-
-    <input type="text" id="cargo" placeholder="Cargo Desejado">
-
-    <input type="text" id="linkedin" placeholder="LinkedIn">
-
-    <textarea id="formacao" placeholder="Formação Acadêmica"></textarea>
-
-    <textarea id="experiencia" placeholder="Experiência Profissional"></textarea>
-
-    <textarea id="habilidades" placeholder="Habilidades"></textarea>
-
-    <textarea id="conquistas" placeholder="Principais Conquistas"></textarea>
 
     <input type="file" id="foto" accept="image/*">
     <button onclick="gerarCurriculo()">Gerar Currículo</button>
@@ -147,6 +149,33 @@ if(score < 70){
     sugestoes =
     "Excelente currículo para sistemas ATS.";
 }
+let classificacao = "";
+
+if(score < 50){
+    classificacao = "🔴 Currículo Fraco";
+}else if(score < 80){
+    classificacao = "🟡 Currículo Bom";
+}else{
+    classificacao = "🟢 Currículo Excelente";
+}let classificacao = "";
+
+if(score < 50){
+    classificacao = "🔴 Currículo Fraco";
+}else if(score < 80){
+    classificacao = "🟡 Currículo Bom";
+}else{
+    classificacao = "🟢 Currículo Excelente";
+}let classificacao = "";
+    
+
+if(score < 50){
+    classificacao = "🔴 Currículo Fraco";
+}else if(score < 80){
+    classificacao = "🟡 Currículo Bom";
+}else{
+    classificacao = "🟢 Currículo Excelente";
+}
+    
 
 
 let foto = document.getElementById("foto").files[0];
@@ -180,6 +209,26 @@ ${fotoHTML}
 
 <h3>🎯 Score ATS: ${score}/100</h3>
 
+<div style="
+width:100%;
+height:25px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:15px;
+">
+
+<div style="
+width:${score}%;
+height:100%;
+background:#22c55e;
+">
+</div>
+
+</div>
+
+<h3>${classificacao}</h3>
+
 <h3>💡 Sugestões</h3>
 <p>${sugestoes}</p>
 
@@ -200,7 +249,6 @@ ${fotoHTML}
 }
 
 </script>
-<script src="../assets/app.js"></script>
     
 </body>
 </html>
