@@ -121,6 +121,12 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     🗑️ Limpar Dados
     </button>
 
+    <div id="mensagemErro" style="
+    color:red;
+    font-weight:bold;
+    margin-top:10px;
+    "></div>
+
     <div id="resultado"></div>
    
     </div>
@@ -128,14 +134,20 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     <script>
     
     function gerarCurriculo(){
+    let mensagemErro = document.getElementById("mensagemErro");
+
     if(
     document.getElementById("nome").value.trim() === "" ||
     document.getElementById("email").value.trim() === ""
     ){
-        alert("Preencha pelo menos Nome e E-mail.");
+        mensagemErro.innerHTML =
+        "⚠️ Preencha pelo menos Nome e E-mail.";
+    
         return;
     }
     
+    mensagemErro.innerHTML = "";
+        
     let nome = document.getElementById("nome").value;
     let email = document.getElementById("email").value;
     let telefone = document.getElementById("telefone").value;
@@ -152,13 +164,13 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     if(nome.length > 5) score += 10;
     if(email.includes("@")) score += 10;
     if(telefone.length >= 10) score += 10;
-    if(cargo) score += 10;
-    if(linkedin) score += 10;
-    if(formacao.length > 20) score += 15;
-    if(experiencia.length > 50) score += 20;
-    if(habilidades.length > 20) score += 15;
-    if(conquistas.length > 20) score += 20;
-    
+    if(cidade.length > 2) score += 5;
+    if(cargo.length > 3) score += 10;
+    if(linkedin.length > 10) score += 10;
+    if(formacao.length > 30) score += 15;
+    if(experiencia.length > 80) score += 20;
+    if(habilidades.length > 30) score += 15;
+    if(conquistas.length > 30) score += 15;
     if(score > 100){
         score = 100;
     }
@@ -201,6 +213,10 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     ${fotoHTML}
     
     <hr>
+    <p>
+    <strong>Gerado em:</strong>
+    ${new Date().toLocaleDateString("pt-BR")}
+    </p>
     
     <h2>${nome}</h2>
     
@@ -235,9 +251,16 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     </div>
     
     <h3>${classificacao}</h3>
-    
+
     <h3>💡 Sugestões</h3>
     <p>${sugestoes}</p>
+    
+    <h3>📝 Resumo Profissional</h3>
+    <p>
+    Profissional interessado em atuar como
+    ${cargo}, com experiência em
+    ${habilidades}.
+    </p>
     
     <h3>🎓 Formação</h3>
     <p>${formacao}</p>
@@ -247,10 +270,9 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     
     <h3>🚀 Habilidades</h3>
     <p>${habilidades}</p>
-    
-    <h3>🏆 Conquistas</h3>
-    <p>${conquistas}</p>
-    
+
+<h3>🏆 Conquistas</h3>
+<p>${conquistas}</p>
     `;
     
     }
