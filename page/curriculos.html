@@ -318,7 +318,7 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     if(plano === "pro" || plano === "premium"){
         recursosPro = `
         ${recursosPro}
-        ${recursosPremium}
+
         `;
     }
         
@@ -353,6 +353,7 @@ window.addEventListener("DOMContentLoaded", carregarDados);
         `;
     }
     let empregabilidade = "";
+        
 
     if(score >= 90){
         empregabilidade = "🔥 Muito Alta";
@@ -363,8 +364,25 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     }else{
         empregabilidade = "⚠️ Baixa";
     }
-    let pontosFortes = [];
 
+    let estrelasATS = "";
+
+    if(score >= 90){
+        estrelasATS = "⭐⭐⭐⭐⭐";
+    }else if(score >= 80){
+        estrelasATS = "⭐⭐⭐⭐";
+    }else if(score >= 60){
+        estrelasATS = "⭐⭐⭐";
+    }else if(score >= 40){
+        estrelasATS = "⭐⭐";
+    }else{
+        estrelasATS = "⭐";
+    }
+
+        
+        
+    let pontosFortes = [];
+    
     if(linkedin.length > 10)
         pontosFortes.push("LinkedIn preenchido");
     
@@ -376,7 +394,42 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     
     if(conquistas.length > 30)
         pontosFortes.push("Conquistas relevantes");
-        
+    
+    if(pontosFortes.length === 0){
+        pontosFortes.push("Nenhum ponto forte identificado ainda");
+    }
+
+    let pontosMelhoria = [];
+    
+    if(linkedin.length <= 10)
+        pontosMelhoria.push("Adicionar LinkedIn");
+    
+    if(experiencia.length < 80)
+        pontosMelhoria.push("Detalhar mais experiências");
+    
+    if(habilidades.length < 30)
+        pontosMelhoria.push("Adicionar mais habilidades");
+    
+    if(conquistas.length < 30)
+        pontosMelhoria.push("Adicionar conquistas profissionais");
+
+    if(pontosMelhoria.length === 0){
+            pontosMelhoria.push("Currículo muito bem preenchido");
+        }
+    
+            
+    let seloATS = "";
+
+    if(score >= 90){
+        seloATS = "🏆 ATS Elite";
+    }else if(score >= 80){
+        seloATS = "🥇 ATS Ouro";
+    }else if(score >= 60){
+        seloATS = "🥈 ATS Prata";
+    }else{
+        seloATS = "🥉 ATS Bronze";
+    }    
+            
         resultado.innerHTML = `
     ${fotoHTML}
     
@@ -401,6 +454,23 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     <h3>🎯 Score ATS: ${score}/100</h3>
     <h3>🏅 Nível ATS: ${nivelATS}</h3>
     
+    <h3>🏅 Certificação ATS</h3>
+    <p style="
+    font-size:22px;
+    font-weight:bold;
+    color:#2563eb;
+    ">
+    ${seloATS}
+    </p>
+
+    <h3>⭐ Ranking ATS</h3>
+    <p style="
+    font-size:28px;
+    color:#f59e0b;
+    ">
+    ${estrelasATS}
+    </p>
+    
     <h3>📊 Compatibilidade ATS</h3>
     <div style="
     background:#eee;
@@ -417,6 +487,10 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     </div>
     
     <p>${compatibilidadeATS}% compatível com sistemas ATS</p>
+    <p>
+    🎯 Probabilidade estimada de aprovação:
+    <strong>${Math.min(score + 5, 100)}%</strong>
+    </p>
     
     <div style="
     width:100%;
@@ -433,13 +507,13 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     background:#22c55e;
     ">
     </div>
+    </div>
+
     
     <h3>📈 Empregabilidade</h3>
     <p>
     <strong>${empregabilidade}</strong>
     </p>
-    
-    </div>
     
     <h3>${classificacao}</h3>
     <h3>🤖 Análise ATS</h3>
@@ -478,6 +552,10 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     <h3>⭐ Pontos Fortes</h3>
     <ul>
     ${pontosFortes.map(p => `<li>${p}</li>`).join("")}
+    </ul>
+    <h3>📌 Pontos de Melhoria</h3>
+    <ul>
+    ${pontosMelhoria.map(p => `<li>${p}</li>`).join("")}
     </ul>
 
     ${recursosPro}
