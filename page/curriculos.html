@@ -95,7 +95,8 @@ let blob = new Blob(
 [conteudo],
 {
 type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-};
+}
+);
 
 let link =
 document.createElement("a");
@@ -214,7 +215,16 @@ link.click();
     
     localStorage.removeItem("nome");
     localStorage.removeItem("email");
-    ...
+    localStorage.removeItem("telefone");
+    localStorage.removeItem("cidade");
+    localStorage.removeItem("cargo");
+    localStorage.removeItem("linkedin");
+    localStorage.removeItem("formacao");
+    localStorage.removeItem("experiencia");
+    localStorage.removeItem("habilidades");
+    localStorage.removeItem("conquistas");
+    localStorage.removeItem("vaga");
+    
     location.reload();
     
     }
@@ -465,8 +475,7 @@ link.click();
     const palavrasVaga =
     vaga.trim() === ""
     ? []
-    const palavrasVaga =
-    [...new Set(vaga.split(/\s+/))];
+    : [...new Set(vaga.split(/\s+/))];
         
     let palavrasFaltando = [];
     
