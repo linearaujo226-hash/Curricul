@@ -93,8 +93,9 @@ document.getElementById("resultado").innerHTML;
 
 let blob = new Blob(
 [conteudo],
-{type:"application/msword"}
-);
+{
+type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+};
 
 let link =
 document.createElement("a");
@@ -211,6 +212,9 @@ link.click();
     JSON.stringify(historico)
     );
     
+    localStorage.removeItem("nome");
+    localStorage.removeItem("email");
+    ...
     location.reload();
     
     }
@@ -246,6 +250,10 @@ link.click();
 
     resultado.innerHTML =
     "<h3>⏳ Gerando currículo...</h3>";
+    window.scrollTo({
+    top: resultado.offsetTop,
+    behavior: "smooth"
+    });
 
     let mensagemErro =
     document.getElementById("mensagemErro");
@@ -457,7 +465,8 @@ link.click();
     const palavrasVaga =
     vaga.trim() === ""
     ? []
-    : vaga.split(/\s+/);
+    const palavrasVaga =
+    [...new Set(vaga.split(/\s+/))];
         
     let palavrasFaltando = [];
     
@@ -642,6 +651,13 @@ link.click();
     nome = limparTexto(nome);
     email = limparTexto(email);
     cargo = limparTexto(cargo);
+    telefone = limparTexto(telefone);
+    cidade = limparTexto(cidade);
+    linkedin = limparTexto(linkedin);
+    formacao = limparTexto(formacao);
+    experiencia = limparTexto(experiencia);
+    habilidades = limparTexto(habilidades);
+    conquistas = limparTexto(conquistas);
 
         
             
