@@ -305,22 +305,19 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     }
     if(plano === "premium"){
     recursosPremium = `
-    <h3>📄 Carta de Apresentação</h3>
-    <pre>${carta}</pre>
-
     <h3>🎤 Simulação de Entrevista</h3>
     <ul>
     ${perguntas.map(p => `<li>${p}</li>`).join("")}
     </ul>
     `;
 }
-        
     if(plano === "pro" || plano === "premium"){
         recursosPro = `
         ${recursosPro}
-
+        ${recursosPremium}
         `;
     }
+    
         
     let resultado = document.getElementById("resultado");
     let compatibilidadeATS = Math.min(score, 100);
@@ -559,7 +556,7 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     </ul>
 
     ${recursosPro}
-    ${recursosPremium}
+   
     `;
     
     }
