@@ -85,7 +85,23 @@ if(conquistas.length > 20) score += 20;
 if(score > 100){
     score = 100;
 }
+let sugestoes = "";
 
+if(score < 70){
+    sugestoes =
+    "Adicione mais experiência, habilidades e conquistas.";
+}else if(score < 90){
+    sugestoes =
+    "Seu currículo está bom, mas pode melhorar.";
+}else{
+    sugestoes =
+    "Excelente currículo para sistemas ATS.";
+}
+
+<h3>💡 Sugestões</h3>
+<p>${sugestoes}</p>
+
+    
 document.getElementById("resultado").innerHTML = `
 
 <hr>
