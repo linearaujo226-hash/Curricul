@@ -7,6 +7,66 @@
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 
+<script>
+
+function salvarDados(){
+
+const campos = [
+"nome",
+"email",
+"telefone",
+"cidade",
+"cargo",
+"linkedin",
+"formacao",
+"experiencia",
+"habilidades",
+"conquistas"
+];
+
+campos.forEach(id => {
+
+let campo = document.getElementById(id);
+
+if(campo){
+localStorage.setItem(id, campo.value);
+}
+
+});
+
+}
+
+function carregarDados(){
+
+const campos = [
+"nome",
+"email",
+"telefone",
+"cidade",
+"cargo",
+"linkedin",
+"formacao",
+"experiencia",
+"habilidades",
+"conquistas"
+];
+
+campos.forEach(id => {
+
+let campo = document.getElementById(id);
+
+if(campo){
+campo.value = localStorage.getItem(id) || "";
+}
+
+});
+
+}
+
+window.onload = carregarDados;
+
+</script>
+    
 <body>
 
 <header>
@@ -140,6 +200,7 @@ ${fotoHTML}
 }
 
 </script>
-
+<script src="../assets/app.js"></script>
+    
 </body>
 </html>
