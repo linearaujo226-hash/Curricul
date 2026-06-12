@@ -295,6 +295,8 @@ window.addEventListener("DOMContentLoaded", carregarDados);
         fotoHTML = `<img src="${URL.createObjectURL(foto)}"
         style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid #2563eb;margin-bottom:15px;">`;
     }
+    let recursosPro = "";
+    let recursosPremium = "";
     if(plano === "pro"){
         recursosPro = `
         <h3>📄 Carta de Apresentação</h3>
@@ -321,6 +323,60 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     }
         
     let resultado = document.getElementById("resultado");
+    let compatibilidadeATS = Math.min(score, 100);
+    let vagasIndicadas = [];
+
+    if(textoCompleto.includes("python")){
+        vagasIndicadas.push("🐍 Desenvolvedor Python");
+    }
+    
+    if(textoCompleto.includes("javascript")){
+        vagasIndicadas.push("🌐 Desenvolvedor Front-End");
+    }
+    
+    if(textoCompleto.includes("sql")){
+        vagasIndicadas.push("📊 Analista de Dados");
+    }
+    
+    if(textoCompleto.includes("excel")){
+        vagasIndicadas.push("📈 Assistente Administrativo");
+    }
+    
+    let vagasHTML = "";
+    
+    if(vagasIndicadas.length > 0){
+        vagasHTML = `
+        <h3>💼 Vagas Compatíveis</h3>
+        <ul>
+        ${vagasIndicadas.map(v => `<li>${v}</li>`).join("")}
+        </ul>
+        `;
+    }
+    let empregabilidade = "";
+
+    if(score >= 90){
+        empregabilidade = "🔥 Muito Alta";
+    }else if(score >= 80){
+        empregabilidade = "🚀 Alta";
+    }else if(score >= 60){
+        empregabilidade = "📈 Média";
+    }else{
+        empregabilidade = "⚠️ Baixa";
+    }
+    let pontosFortes = [];
+
+    if(linkedin.length > 10)
+        pontosFortes.push("LinkedIn preenchido");
+    
+    if(experiencia.length > 80)
+        pontosFortes.push("Boa experiência profissional");
+    
+    if(habilidades.length > 30)
+        pontosFortes.push("Habilidades detalhadas");
+    
+    if(conquistas.length > 30)
+        pontosFortes.push("Conquistas relevantes");
+        
         resultado.innerHTML = `
     ${fotoHTML}
     
@@ -345,6 +401,23 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     <h3>🎯 Score ATS: ${score}/100</h3>
     <h3>🏅 Nível ATS: ${nivelATS}</h3>
     
+    <h3>📊 Compatibilidade ATS</h3>
+    <div style="
+    background:#eee;
+    height:30px;
+    border-radius:20px;
+    overflow:hidden;
+    ">
+    <div style="
+    width:${compatibilidadeATS}%;
+    height:100%;
+    background:#2563eb;
+    ">
+    </div>
+    </div>
+    
+    <p>${compatibilidadeATS}% compatível com sistemas ATS</p>
+    
     <div style="
     width:100%;
     height:25px;
@@ -361,16 +434,24 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     ">
     </div>
     
+    <h3>📈 Empregabilidade</h3>
+    <p>
+    <strong>${empregabilidade}</strong>
+    </p>
+    
     </div>
     
     <h3>${classificacao}</h3>
     <h3>🤖 Análise ATS</h3>
     <p>
     
+    
     Palavras-chave encontradas:
     <strong>${palavrasEncontradas}</strong>
     </p>
     ${palavrasHTML}
+    ${vagasHTML}
+    
 
     <h3>💡 Sugestões</h3>
     <p>${sugestoes}</p>
@@ -394,14 +475,13 @@ window.addEventListener("DOMContentLoaded", carregarDados);
     <h3>🏆 Conquistas</h3>
     <p>${conquistas}</p>
 
-    <h3>📄 Carta de Apresentação</h3>
-    <pre>${carta}</pre>
-
-    <h3>🎤 Simulação de Entrevista</h3>
-
+    <h3>⭐ Pontos Fortes</h3>
     <ul>
-    ${perguntas.map(p => `<li>${p}</li>`).join("")}
+    ${pontosFortes.map(p => `<li>${p}</li>`).join("")}
     </ul>
+
+    ${recursosPro}
+    ${recursosPremium}
     `;
     
     }
