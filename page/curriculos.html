@@ -105,12 +105,11 @@ function baixarArquivo(){
     : "application/msword";
 
    let blob = new Blob(
-    [conteudo],
-    {
-    type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    }
+        [conteudo],
+        {
+            type: mime
+        }
     );
-
     let link =
     document.createElement("a");
 
