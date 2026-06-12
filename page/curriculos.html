@@ -86,29 +86,43 @@ window.addEventListener("DOMContentLoaded", () => {
 carregarDados();
 carregarTema();
 });
-function baixarWord(){
+function baixarArquivo(){
 
-let conteudo =
-document.getElementById("resultado").innerHTML;
+    const formato =
+    document.getElementById("formatoDownload").value;
 
-let blob = new Blob(
-[conteudo],
-{
-type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-}
-);
+    if(formato === "pdf"){
+        window.print();
+        return;
+    }
 
-let link =
-document.createElement("a");
+    let conteudo =
+    document.getElementById("resultado").innerHTML;
 
-link.href =
-URL.createObjectURL(blob);
+    let mime =
+    formato === "docx"
+    ? "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    : "application/msword";
 
-link.download =
-"curriculo.doc";
+   let blob = new Blob(
+    [conteudo],
+    {
+    type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    }
+    );
 
-link.click();
+    let link =
+    document.createElement("a");
 
+    link.href =
+    URL.createObjectURL(blob);
+
+    link.download =
+    formato === "docx"
+    ? "curriculo.docx"
+    : "curriculo.doc";
+
+    link.click();
 }
 
     
@@ -169,13 +183,14 @@ link.click();
     <button onclick="gerarCurriculo()">
     🚀 Gerar Currículo
     </button>
-   
-    <button onclick="window.print()">
-    📄 Baixar PDF
-    </button>
-    
-    <button onclick="baixarWord()">
-    📝 Baixar Word
+        <select id="formatoDownload">
+        <option value="pdf">📄 PDF</option>
+        <option value="doc">📝 Word (.doc)</option>
+        <option value="docx">📘 Word (.docx)</option>
+    </select>
+
+    <button onclick="baixarArquivo()">
+    ⬇️ Baixar Arquivo
     </button>
     
     <button onclick="localStorage.clear(); location.reload();">
@@ -472,12 +487,11 @@ link.click();
     let compatibilidadeATS = Math.min(score, 100);
     let compatibilidadeVaga = 0;
 
-    const palavrasVaga =
+   const palavrasVaga =
     vaga.trim() === ""
     ? []
     : [...new Set(vaga.split(/\s+/))];
-        
-    let palavrasFaltando = [];
+        let palavrasFaltando = [];
     
     palavrasVaga.forEach(p => {
     
