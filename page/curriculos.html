@@ -87,173 +87,91 @@ carregarDados();
 carregarTema();
 });
 
-async function baixarArquivo(){
+<script src="https://unpkg.com/docx@8.5.0/build/index.js"></script>
 
-    const formato =
-    document.getElementById("formatoDownload").value;
+<script>
 
-    if(formato === "pdf"){
+async function baixarArquivo() {
+
+    const formato = document.getElementById("formatoDownload").value;
+
+    if (formato === "pdf") {
         window.print();
         return;
     }
-    const barraATS =
-    "🟩".repeat(Math.floor(score/10)) +
-    "⬜".repeat(10 - Math.floor(score/10));
 
-    const conteudo =
-    document.getElementById("resultado").innerText;
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const telefone = document.getElementById("telefone").value;
+    const cargo = document.getElementById("cargo").value;
+    const formacao = document.getElementById("formacao").value;
+    const experiencia = document.getElementById("experiencia").value;
+    const habilidades = document.getElementById("habilidades").value;
+    const conquistas = document.getElementById("conquistas").value;
 
-    if(formato === "docx"){
+    if (formato === "docx") {
 
         const doc = new docx.Document({
-    sections: [{
-        children: [
-            new docx.Paragraph({
-                   text: `ATS: ${barraATS} ${score}%`
-            })
-
-            new docx.Paragraph({
-                text: nome,
-                heading: docx.HeadingLevel.TITLE
-            }),
-
-            new docx.Paragraph({
-                text: cargo
-            }),
-
-            new docx.Paragraph({
-                text: `Email: ${email}`
-            }),
-
-            new docx.Paragraph({
-                text: `Telefone: ${telefone}`
-            }),
-
-            new docx.Paragraph({
-                text: "SCORE ATS"
-            }),
-
-            new docx.Table({
-                rows: [
-                    new docx.TableRow({
-                        children: [
-                            new docx.TableCell({
-                                children:[
-                                    new docx.Paragraph("Indicador")
-                                ]
-                            }),
-                            new docx.TableCell({
-                                children:[
-                                    new docx.Paragraph("Valor")
-                                ]
-                            })
-                        ]
+            sections: [{
+                children: [
+                    new docx.Paragraph({
+                        text: nome,
+                        heading: docx.HeadingLevel.TITLE
                     }),
+                    new docx.Paragraph(cargo),
+                    new docx.Paragraph(`Email: ${email}`),
+                    new docx.Paragraph(`Telefone: ${telefone}`),
 
-                    new docx.TableRow({
-                        children: [
-                            new docx.TableCell({
-                                children:[
-                                    new docx.Paragraph("ATS")
-                                ]
-                            }),
-                            new docx.TableCell({
-                                children:[
-                                    new docx.Paragraph(`${score}%`)
-                                ]
-                            })
-                        ]
+                    new docx.Paragraph({
+                        text: "FORMAÇÃO",
+                        heading: docx.HeadingLevel.HEADING_1
                     }),
+                    new docx.Paragraph(formacao),
 
-                    new docx.TableRow({
-                        children: [
-                            new docx.TableCell({
-                                children:[
-                                    new docx.Paragraph("Nível")
-                                ]
-                            }),
-                            new docx.TableCell({
-                                children:[
-                                    new docx.Paragraph(nivelATS)
-                                ]
-                            })
-                        ]
-                    })
+                    new docx.Paragraph({
+                        text: "EXPERIÊNCIA",
+                        heading: docx.HeadingLevel.HEADING_1
+                    }),
+                    new docx.Paragraph(experiencia),
+
+                    new docx.Paragraph({
+                        text: "HABILIDADES",
+                        heading: docx.HeadingLevel.HEADING_1
+                    }),
+                    new docx.Paragraph(habilidades),
+
+                    new docx.Paragraph({
+                        text: "CONQUISTAS",
+                        heading: docx.HeadingLevel.HEADING_1
+                    }),
+                    new docx.Paragraph(conquistas)
                 ]
-            }),
+            }]
+        });
 
-            new docx.Paragraph({
-                text: "FORMAÇÃO",
-                heading: docx.HeadingLevel.HEADING_1
-            }),
+        const blob = await docx.Packer.toBlob(doc);
 
-            new docx.Paragraph(formacao),
-
-            new docx.Paragraph({
-                text: "EXPERIÊNCIA",
-                heading: docx.HeadingLevel.HEADING_1
-            }),
-
-            new docx.Paragraph(experiencia),
-
-            new docx.Paragraph({
-                text: "HABILIDADES",
-                heading: docx.HeadingLevel.HEADING_1
-            }),
-
-            new docx.Paragraph(habilidades),
-
-            new docx.Paragraph({
-                text: "CONQUISTAS",
-                heading: docx.HeadingLevel.HEADING_1
-            }),
-
-            new docx.Paragraph(conquistas)
-            
-
-        ]
-    }]
-});
-
-        const blob =
-        await docx.Packer.toBlob(doc);
-
-        const link =
-        document.createElement("a");
-
-        link.href =
-        URL.createObjectURL(blob);
-
-        link.download =
-        "curriculo.docx";
-
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "curriculo.docx";
         link.click();
 
         return;
     }
 
-    const blob = new Blob(
-        [conteudo],
-        {
-            type: "application/msword"
-        }
-    );
+    const conteudo =
+        document.getElementById("resultado").innerText;
 
-    const link =
-    document.createElement("a");
+    const blob = new Blob([conteudo], {
+        type: "application/msword"
+    });
 
-    link.href =
-    URL.createObjectURL(blob);
-
-    link.download =
-    "curriculo.doc";
-
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "curriculo.doc";
     link.click();
 }
-    
-<script src="https://unpkg.com/docx@8.5.0/build/index.js"></script>
 
-    
 </script>
 
 </head>
