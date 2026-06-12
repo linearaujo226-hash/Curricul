@@ -1,1 +1,98 @@
-<html><head><link rel='stylesheet' href='../assets/style.css'></head><body><h1>Simulador de Entrevista</h1><p>Estrutura pronta para expansão.</p></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador de Entrevista</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+
+<header>
+<h1>Contrata+ IA</h1>
+</header>
+
+<div class="container">
+
+<h2>🎤 Simulador de Entrevista</h2>
+
+<input type="text" id="cargo" placeholder="Cargo Desejado">
+
+<select id="nivel">
+<option>Iniciante</option>
+<option>Intermediário</option>
+<option>Sênior</option>
+</select>
+
+<button onclick="gerarEntrevista()">
+Iniciar Simulação
+</button>
+
+<div id="resultado"></div>
+
+</div>
+
+<script>
+
+function gerarEntrevista(){
+
+let cargo =
+document.getElementById("cargo").value;
+
+let nivel =
+document.getElementById("nivel").value;
+
+let perguntas = [];
+
+perguntas.push(
+"Fale sobre você."
+);
+
+perguntas.push(
+"Por que deseja trabalhar nesta empresa?"
+);
+
+perguntas.push(
+"Quais são seus pontos fortes?"
+);
+
+if(nivel === "Intermediário" || nivel === "Sênior"){
+perguntas.push(
+"Conte um desafio profissional que você superou."
+);
+}
+
+if(nivel === "Sênior"){
+perguntas.push(
+"Como você lidera equipes e toma decisões?"
+);
+}
+
+document.getElementById("resultado").innerHTML = `
+
+<h2>Entrevista para ${cargo}</h2>
+
+<h3>Nível: ${nivel}</h3>
+
+<ol>
+${perguntas.map(p => `<li>${p}</li>`).join("")}
+</ol>
+
+<h3>💡 Dicas</h3>
+
+<ul>
+<li>Responda de forma objetiva.</li>
+<li>Use exemplos reais.</li>
+<li>Demonstre resultados alcançados.</li>
+<li>Mantenha postura profissional.</li>
+</ul>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
