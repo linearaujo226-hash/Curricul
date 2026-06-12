@@ -37,9 +37,21 @@
 
     <textarea id="conquistas" placeholder="Principais Conquistas"></textarea>
 
+    <input type="file" id="foto" accept="image/*">
     <button onclick="gerarCurriculo()">Gerar Currículo</button>
+    <button onclick="window.print()">📄 Baixar PDF</button>
 
     <div id="resultado"></div>
+    let foto = document.getElementById("foto").files[0];
+
+let fotoHTML = "";
+
+    ${fotoHTML}
+
+if(foto){
+    fotoHTML = `<img src="${URL.createObjectURL(foto)}"
+    style="width:120px;height:120px;border-radius:50%;">`;
+}
 
 </div>
 
@@ -58,18 +70,17 @@ let experiencia = document.getElementById("experiencia").value;
 let habilidades = document.getElementById("habilidades").value;
 let conquistas = document.getElementById("conquistas").value;
 
-let score = 50;
+let score = 0;
 
-if(nome) score += 5;
-if(email) score += 5;
-if(telefone) score += 5;
-if(cidade) score += 5;
+if(nome.length > 5) score += 10;
+if(email.includes("@")) score += 10;
+if(telefone.length >= 10) score += 10;
 if(cargo) score += 10;
 if(linkedin) score += 10;
-if(formacao) score += 10;
-if(experiencia) score += 15;
-if(habilidades) score += 10;
-if(conquistas) score += 15;
+if(formacao.length > 20) score += 15;
+if(experiencia.length > 50) score += 20;
+if(habilidades.length > 20) score += 15;
+if(conquistas.length > 20) score += 20;
 
 if(score > 100){
     score = 100;
