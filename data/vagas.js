@@ -1,332 +1,119 @@
 const vagas = {
 
-tecnologia: {
-cargos: [
-"Desenvolvedor Python",
-"Desenvolvedor Java",
-"Desenvolvedor C#",
-"Desenvolvedor Full Stack",
-"Desenvolvedor Front-End",
-"Desenvolvedor Back-End",
-"Engenheiro de Software",
-"Arquiteto de Software",
-"QA Tester",
-"DevOps",
-"Cloud Engineer",
-"Administrador de Sistemas"
-]
-},
+tecnologia: [
+"Python","Java","JavaScript","React","Node.js",
+"Git","Docker","AWS","Azure","API REST"
+],
 
-dados: {
-cargos: [
-"Analista de Dados",
-"Cientista de Dados",
-"Engenheiro de Dados",
-"Analista BI",
-"Especialista Power BI",
-"DBA",
-"Analista SQL"
-]
-},
+dados: [
+"SQL","Power BI","Excel","ETL","Dashboard",
+"Python","Machine Learning"
+],
 
-inteligenciaArtificial: {
-cargos: [
-"Engenheiro de IA",
-"Machine Learning Engineer",
-"Especialista NLP",
-"Prompt Engineer",
-"Pesquisador IA"
-]
-},
+marketing: [
+"SEO","Google Ads","Meta Ads",
+"ROI","CAC","Funil de Vendas"
+],
 
-marketing: {
-cargos: [
-"Analista de Marketing",
-"Social Media",
-"Gestor de Tráfego",
-"Especialista SEO",
-"Copywriter",
-"Designer de Marketing",
-"Coordenador de Marketing"
-]
-},
+financeiro: [
+"Fluxo de Caixa","DRE","EBITDA",
+"Orçamento","Custos","Indicadores Financeiros"
+],
 
-comercial: {
-cargos: [
-"Vendedor",
-"SDR",
-"Closer",
-"Executivo de Contas",
-"Gerente Comercial",
-"Consultor Comercial"
-]
-},
+rh: [
+"Recrutamento","Seleção","Feedback",
+"People Analytics","Turnover"
+],
 
-financeiro: {
-cargos: [
-"Analista Financeiro",
-"Controller",
-"Tesoureiro",
-"Coordenador Financeiro",
-"Gerente Financeiro",
-"CFO"
-]
-},
+comercial: [
+"CRM","Negociação","Prospecção",
+"Funil de Vendas","Fechamento"
+],
 
-contabilidade: {
-cargos: [
-"Assistente Contábil",
-"Analista Contábil",
-"Contador",
-"Auditor",
-"Perito Contábil"
-]
-},
+juridico: [
+"Direito Trabalhista",
+"Contratos",
+"Compliance"
+],
 
-rh: {
-cargos: [
-"Recrutador",
-"Analista RH",
-"Business Partner",
-"Coordenador RH",
-"Gerente RH"
-]
-},
+administrativo: [
+"Pacote Office",
+"Processos Administrativos",
+"Organização"
+],
 
-juridico: {
-cargos: [
-"Advogado",
-"Assistente Jurídico",
-"Analista Jurídico",
-"Coordenador Jurídico"
-]
-},
+logistica: [
+"Estoque",
+"Supply Chain",
+"WMS",
+"Distribuição"
+],
 
-administrativo: {
-cargos: [
-"Assistente Administrativo",
-"Analista Administrativo",
-"Supervisor Administrativo",
-"Gerente Administrativo"
-]
-},
+engenharia: [
+"AutoCAD",
+"Projetos",
+"Planejamento",
+"Normas Técnicas"
+],
 
-engenharia: {
-cargos: [
-"Engenheiro Civil",
-"Engenheiro Mecânico",
-"Engenheiro Elétrico",
-"Engenheiro Produção",
-"Engenheiro Ambiental",
-"Engenheiro Automação"
-]
-},
+saude: [
+"Atendimento ao Paciente",
+"Prontuário",
+"Protocolos"
+],
 
-logistica: {
-cargos: [
-"Analista Logístico",
-"Coordenador Logístico",
-"Supervisor Estoque",
-"Gerente Supply Chain"
-]
-},
+educacao: [
+"Planejamento Pedagógico",
+"Avaliação",
+"Didática"
+],
 
-compras: {
-cargos: [
-"Comprador",
-"Analista Compras",
-"Coordenador Compras",
-"Gerente Compras"
-]
-},
+atendimento: [
+"SAC",
+"NPS",
+"Experiência do Cliente"
+],
 
-atendimento: {
-cargos: [
-"Atendente",
-"Operador SAC",
-"Suporte Técnico",
-"Customer Service"
-]
-},
+seguranca: [
+"NRs",
+"Segurança do Trabalho",
+"Inspeções"
+],
 
-customerSuccess: {
-cargos: [
-"Customer Success",
-"Customer Success Manager",
-"Customer Experience"
-]
-},
+industrial: [
+"Lean Manufacturing",
+"Produção",
+"5S"
+],
 
-saude: {
-cargos: [
-"Médico",
-"Enfermeiro",
-"Técnico Enfermagem",
-"Fisioterapeuta",
-"Nutricionista",
-"Psicólogo",
-"Farmacêutico"
-]
-},
+turismo: [
+"Reservas",
+"Atendimento",
+"Pacotes"
+],
 
-educacao: {
-cargos: [
-"Professor",
-"Coordenador Pedagógico",
-"Diretor Escolar",
-"Tutor EAD"
-]
-},
+agronegocio: [
+"Agricultura",
+"Pecuária",
+"Produção Rural"
+],
 
-seguranca: {
-cargos: [
-"Vigilante",
-"Supervisor Segurança",
-"Analista Segurança Patrimonial"
-]
-},
+construcao: [
+"Obras",
+"Orçamentos",
+"Cronograma"
+],
 
-industria: {
-cargos: [
-"Operador Produção",
-"Líder Produção",
-"Supervisor Produção",
-"Gerente Industrial"
-]
-},
+compras: [
+"Cotação",
+"Fornecedores",
+"Negociação"
+],
 
-agronegocio: {
-cargos: [
-"Engenheiro Agrônomo",
-"Técnico Agrícola",
-"Gerente Fazenda",
-"Consultor Agronegócio"
+qualidade: [
+"ISO 9001",
+"Auditoria",
+"Controle de Qualidade"
 ]
-},
-
-hotelaria: {
-cargos: [
-"Recepcionista",
-"Supervisor Hotel",
-"Gerente Hotel"
-]
-},
-
-gastronomia: {
-cargos: [
-"Cozinheiro",
-"Chef",
-"Auxiliar Cozinha",
-"Gerente Restaurante"
-]
-},
-
-turismo: {
-cargos: [
-"Agente Turismo",
-"Guia Turismo",
-"Consultor Viagens"
-]
-},
-
-transporte: {
-cargos: [
-"Motorista",
-"Motorista Carreta",
-"Coordenador Frota",
-"Gestor Transporte"
-]
-},
-
-ecommerce: {
-cargos: [
-"Analista Ecommerce",
-"Gestor Marketplace",
-"Especialista Shopify"
-]
-},
-
-bancario: {
-cargos: [
-"Caixa Bancário",
-"Gerente Conta",
-"Especialista Crédito",
-"Analista Investimentos"
-]
-},
-
-seguros: {
-cargos: [
-"Corretor Seguros",
-"Analista Sinistros",
-"Gerente Seguros"
-]
-},
-
-telecom: {
-cargos: [
-"Técnico Telecom",
-"Engenheiro Telecom",
-"Analista Redes"
-]
-},
-
-energia: {
-cargos: [
-"Eletricista",
-"Engenheiro Energia",
-"Analista Energia"
-]
-},
-
-design: {
-cargos: [
-"Designer Gráfico",
-"UX Designer",
-"UI Designer",
-"Diretor Arte"
-]
-},
-
-arquitetura: {
-cargos: [
-"Arquiteto",
-"Projetista",
-"Urbanista"
-]
-},
-
-eventos: {
-cargos: [
-"Organizador Eventos",
-"Produtor Eventos",
-"Coordenador Eventos"
-]
-},
-
-moda: {
-cargos: [
-"Estilista",
-"Modelista",
-"Consultor Moda"
-]
-},
-
-beleza: {
-cargos: [
-"Cabeleireiro",
-"Barbeiro",
-"Manicure",
-"Esteticista"
-]
-},
-
-imobiliario: {
-cargos: [
-"Corretor Imóveis",
-"Consultor Imobiliário",
-"Gerente Imobiliário"
-]
-}
 
 };
