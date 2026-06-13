@@ -4,8 +4,8 @@ tecnologia: [
 "Explique orientação a objetos.",
 "Como funciona uma API REST?",
 "Como utiliza Git em projetos?",
-"Como realiza testes em aplicações?",
-"Fale sobre um projeto relevante."
+"Como resolve bugs críticos?",
+"Descreva um projeto relevante."
 ],
 
 dados: [
@@ -13,23 +13,23 @@ dados: [
 "Explique JOIN e UNION.",
 "Como otimiza consultas SQL?",
 "Como cria dashboards eficientes?",
-"Como trata dados inconsistentes?"
+"Como trata dados nulos?"
 ],
 
 marketing: [
 "O que é ROI?",
-"Como mede o sucesso de campanhas?",
+"O que é CAC?",
+"Como mede campanhas?",
 "Explique SEO.",
-"Como reduzir CAC?",
-"Como planeja estratégias digitais?"
+"Como gera leads?"
 ],
 
 financeiro: [
 "Explique fluxo de caixa.",
 "O que é DRE?",
-"Como controla orçamento?",
-"Como analisa indicadores financeiros?",
-"Como reduz custos operacionais?"
+"Como reduz custos?",
+"Como analisa indicadores?",
+"Como controla orçamento?"
 ],
 
 rh: [
@@ -42,42 +42,94 @@ rh: [
 
 comercial: [
 "Como realiza prospecção?",
-"Como lida com objeções?",
+"Como conduz negociações?",
+"Como contorna objeções?",
 "Como utiliza CRM?",
-"Como fecha vendas?",
-"Como fideliza clientes?"
+"Como fecha vendas?"
 ],
 
 juridico: [
 "Como analisa contratos?",
-"O que é compliance?",
-"Como reduz riscos jurídicos?",
-"Como acompanha processos?",
-"Como aplica LGPD?"
+"Como atua em compliance?",
+"Como reduz riscos jurídicos?"
 ],
 
 administrativo: [
-"Como organiza processos internos?",
+"Como organiza processos?",
 "Como controla documentos?",
-"Como elabora relatórios?",
-"Como prioriza atividades?",
-"Como melhora a produtividade?"
+"Como define prioridades?"
 ],
 
 logistica: [
 "Como controla estoque?",
-"Como otimiza rotas?",
-"Como reduz custos logísticos?",
-"Como gerencia fornecedores?",
-"Como acompanha indicadores?"
+"Como reduz atrasos?",
+"Como otimiza entregas?"
+],
+
+engenharia: [
+"Fale sobre um projeto executado.",
+"Como controla qualidade?",
+"Como gerencia riscos?"
 ],
 
 saude: [
-"Como lida com pacientes difíceis?",
-"Como atua sob pressão?",
+"Como atende situações críticas?",
 "Como garante segurança do paciente?",
-"Como trabalha em equipe?",
-"Como mantém registros clínicos?"
+"Como trabalha em equipe?"
+],
+
+educacao: [
+"Como avalia alunos?",
+"Como planeja aulas?",
+"Como lida com dificuldades?"
+],
+
+atendimento: [
+"Como lida com clientes difíceis?",
+"Como melhora NPS?",
+"Como resolve reclamações?"
+],
+
+seguranca: [
+"Como aplica normas de segurança?",
+"Como identifica riscos?",
+"Como conduz inspeções?"
+],
+
+industrial: [
+"Como melhora produtividade?",
+"Como aplica 5S?",
+"Como reduz desperdícios?"
+],
+
+turismo: [
+"Como atende turistas?",
+"Como organiza roteiros?",
+"Como resolve imprevistos?"
+],
+
+agronegocio: [
+"Como aumenta produtividade rural?",
+"Como controla pragas?",
+"Como gerencia safras?"
+],
+
+construcao: [
+"Como controla cronogramas?",
+"Como reduz custos de obra?",
+"Como gerencia equipes?"
+],
+
+compras: [
+"Como negocia com fornecedores?",
+"Como reduz custos?",
+"Como faz cotações?"
+],
+
+qualidade: [
+"Como conduz auditorias?",
+"Como aplica ISO 9001?",
+"Como trata não conformidades?"
 ]
 
 };
