@@ -1,3 +1,4 @@
+
 const vagas = {
 
 python: [
@@ -31,3 +32,4 @@ rh: [
 ]
 
 };
+
