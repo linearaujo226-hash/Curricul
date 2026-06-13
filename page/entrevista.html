@@ -164,6 +164,41 @@ let perguntas = [
 "Qual foi seu maior resultado profissional?"
 
 ];
+const perguntasPremium = {
+
+python: [
+"Explique o conceito de orientação a objetos.",
+"Qual a diferença entre lista e tupla?",
+"Como você utiliza APIs REST em projetos?",
+"Como funciona tratamento de exceções?",
+"Explique o uso de decorators."
+],
+
+dados: [
+"Explique JOIN e UNION.",
+"Como você cria dashboards no Power BI?",
+"Como trata dados nulos?",
+"Explique ETL.",
+"Como otimiza consultas SQL?"
+],
+
+frontend: [
+"Explique o Virtual DOM.",
+"Qual diferença entre var, let e const?",
+"Como funciona React Hooks?",
+"Explique responsividade.",
+"Como melhora performance de aplicações web?"
+],
+
+gestao: [
+"Como lidera equipes?",
+"Como define prioridades?",
+"Como resolve conflitos?",
+"Como acompanha indicadores?",
+"Como toma decisões estratégicas?"
+]
+
+};
 
 if(nivel === "Intermediário"){
 
@@ -312,33 +347,86 @@ perguntas.push(
 }
 
 }
+let chave = "";
 
+if(cargo.toLowerCase().includes("python")){
+chave = "python";
+}
+else if(cargo.toLowerCase().includes("dados")){
+chave = "dados";
+}
+else if(cargo.toLowerCase().includes("front")){
+chave = "frontend";
+}
+else if(cargo.toLowerCase().includes("gest")){
+chave = "gestao";
+}
+
+
+// Somente Plano Pro
+if(plano === "pro" && chave){
+perguntas.push(...perguntasPremium[chave]);
+}
+
+   
 /* ===========================
    SCORE
 =========================== */
 
 let score = 50;
 
-if(cargo.length > 3){
-score += 10;
-}
-
 if(nivel === "Intermediário"){
 score += 20;
 }
 
 if(nivel === "Sênior"){
-score += 35;
+score += 40;
 }
 
-if(plano === "pro"){
-score += 15;
+if(cargo.length > 3){
+score += 10;
 }
 
 if(score > 100){
 score = 100;
 }
 
+// COLE AQUI
+let feedback = "";
+
+if(score >= 90){
+feedback =
+"🏆 Excelente desempenho para entrevistas.";
+}
+else if(score >= 70){
+feedback =
+"🚀 Bom desempenho, pequenas melhorias recomendadas.";
+}
+else{
+feedback =
+"⚠️ Recomendado praticar mais entrevistas.";
+}
+
+   
+let nivelEntrevista = "";
+
+if(score >= 90){
+nivelEntrevista = "🏆 Especialista";
+}
+else if(score >= 75){
+nivelEntrevista = "🚀 Avançado";
+}
+else if(score >= 60){
+nivelEntrevista = "📈 Intermediário";
+}
+else{
+nivelEntrevista = "📚 Iniciante";
+}
+   
+let totalPerguntas = perguntas.length;
+
+   
+   
 /* ===========================
    RESULTADO
 =========================== */
@@ -404,6 +492,67 @@ ${perguntas.map(p => `
 </ul>
 
 <h3>🏆 Aprovação Estimada</h3>
+
+<h3>🤖 Feedback da IA</h3>
+
+<p style="
+background:#f3f4f6;
+padding:15px;
+border-radius:10px;
+font-weight:bold;
+">
+${feedback}
+</p>
+
+<h3>🎖️ Nível Profissional</h3>
+
+<p style="
+font-size:22px;
+font-weight:bold;
+color:#2563eb;
+">
+${nivelEntrevista}
+</p>
+
+<h3>📊 Estatísticas da Simulação</h3>
+
+<ul>
+
+<li>
+Total de Perguntas:
+<strong>${totalPerguntas}</strong>
+</li>
+
+<li>
+Nível:
+<strong>${nivel}</strong>
+</li>
+
+<li>
+Plano:
+<strong>${plano.toUpperCase()}</strong>
+</li>
+
+<li>
+Compatibilidade:
+<strong>${score}%</strong>
+</li>
+
+</ul>
+
+<h3>⭐ Classificação Geral</h3>
+
+<p style="
+font-size:20px;
+font-weight:bold;
+color:#22c55e;
+">
+${score >= 90 ? "🏆 Elite" :
+score >= 80 ? "🥇 Ouro" :
+score >= 60 ? "🥈 Prata" :
+"🥉 Bronze"}
+</p>
+   
 
 <div class="barra">
 
