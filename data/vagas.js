@@ -1,434 +1,332 @@
 const vagas = {
 
 tecnologia: {
-nome: "Tecnologia",
-
 cargos: [
-"Desenvolvedor Front-End",
-"Desenvolvedor Back-End",
-"Desenvolvedor Full Stack",
 "Desenvolvedor Python",
 "Desenvolvedor Java",
-"Desenvolvedor PHP",
-"Desenvolvedor .NET",
-"Desenvolvedor Mobile",
-"Analista de Sistemas",
-"Analista de Suporte",
+"Desenvolvedor C#",
+"Desenvolvedor Full Stack",
+"Desenvolvedor Front-End",
+"Desenvolvedor Back-End",
+"Engenheiro de Software",
+"Arquiteto de Software",
 "QA Tester",
 "DevOps",
 "Cloud Engineer",
-"Arquiteto de Software"
-],
-
-competencias: [
-"Lógica de Programação",
-"Resolução de Problemas",
-"Arquitetura de Software",
-"APIs REST",
-"Banco de Dados",
-"Versionamento",
-"Testes",
-"Clean Code"
-],
-
-tecnologias: [
-"Python",
-"Java",
-"PHP",
-"JavaScript",
-"TypeScript",
-"React",
-"Node.js",
-"Docker",
-"AWS",
-"Git",
-"SQL"
-],
-
-ats: [
-"Python",
-"React",
-"Docker",
-"AWS",
-"Git",
-"SQL",
-"API REST"
+"Administrador de Sistemas"
 ]
-
 },
 
 dados: {
-nome: "Dados",
-
 cargos: [
 "Analista de Dados",
 "Cientista de Dados",
 "Engenheiro de Dados",
 "Analista BI",
-"Especialista Power BI"
-],
-
-competencias: [
-"Análise de Dados",
-"ETL",
-"Visualização",
-"Business Intelligence"
-],
-
-tecnologias: [
-"SQL",
-"Python",
-"Power BI",
-"Excel",
-"Tableau"
-],
-
-ats: [
-"SQL",
-"Power BI",
-"ETL",
-"Dashboard",
-"KPIs"
+"Especialista Power BI",
+"DBA",
+"Analista SQL"
 ]
+},
 
+inteligenciaArtificial: {
+cargos: [
+"Engenheiro de IA",
+"Machine Learning Engineer",
+"Especialista NLP",
+"Prompt Engineer",
+"Pesquisador IA"
+]
 },
 
 marketing: {
-nome: "Marketing",
-
 cargos: [
-"Marketing Digital",
+"Analista de Marketing",
 "Social Media",
-"Copywriter",
 "Gestor de Tráfego",
-"SEO"
-],
-
-competencias: [
-"Comunicação",
-"Criatividade",
-"Planejamento",
-"Análise de Métricas"
-],
-
-tecnologias: [
-"Google Ads",
-"Meta Ads",
-"Canva",
-"SEO"
-],
-
-ats: [
-"ROI",
-"CAC",
-"SEO",
-"Google Ads",
-"Meta Ads"
+"Especialista SEO",
+"Copywriter",
+"Designer de Marketing",
+"Coordenador de Marketing"
 ]
-
 },
 
 comercial: {
-nome: "Comercial",
-
 cargos: [
+"Vendedor",
 "SDR",
 "Closer",
-"Vendedor",
 "Executivo de Contas",
-"Gerente Comercial"
-],
-
-competencias: [
-"Negociação",
-"Comunicação",
-"Persuasão",
-"Relacionamento"
-],
-
-tecnologias: [
-"CRM",
-"HubSpot",
-"Pipedrive"
-],
-
-ats: [
-"CRM",
-"Prospecção",
-"Funil de Vendas",
-"Fechamento"
+"Gerente Comercial",
+"Consultor Comercial"
 ]
-
 },
 
 financeiro: {
-nome: "Financeiro",
-
 cargos: [
 "Analista Financeiro",
 "Controller",
 "Tesoureiro",
-"Contador"
-],
-
-competencias: [
-"Análise Financeira",
-"Planejamento",
-"Controle Orçamentário"
-],
-
-tecnologias: [
-"Excel",
-"Power BI",
-"ERP"
-],
-
-ats: [
-"DRE",
-"Fluxo de Caixa",
-"EBITDA",
-"Margem Líquida"
+"Coordenador Financeiro",
+"Gerente Financeiro",
+"CFO"
 ]
+},
 
+contabilidade: {
+cargos: [
+"Assistente Contábil",
+"Analista Contábil",
+"Contador",
+"Auditor",
+"Perito Contábil"
+]
 },
 
 rh: {
-nome: "Recursos Humanos",
-
 cargos: [
-"Analista RH",
 "Recrutador",
+"Analista RH",
 "Business Partner",
-"Departamento Pessoal"
-],
-
-competencias: [
-"Comunicação",
-"Recrutamento",
-"Gestão de Pessoas"
-],
-
-tecnologias: [
-"Gupy",
-"LinkedIn",
-"Excel"
-],
-
-ats: [
-"Turnover",
-"People Analytics",
-"Feedback",
-"Treinamento"
+"Coordenador RH",
+"Gerente RH"
 ]
-
-},
-
-administrativo: {
-nome: "Administrativo",
-
-cargos: [
-"Assistente Administrativo",
-"Auxiliar Administrativo",
-"Secretária",
-"Recepcionista"
-],
-
-competencias: [
-"Organização",
-"Comunicação",
-"Planejamento"
-],
-
-tecnologias: [
-"Excel",
-"Word",
-"ERP"
-],
-
-ats: [
-"Organização",
-"Atendimento",
-"Relatórios"
-]
-
 },
 
 juridico: {
-nome: "Jurídico",
-
 cargos: [
 "Advogado",
 "Assistente Jurídico",
-"Analista Jurídico"
-],
-
-competencias: [
-"Análise",
-"Legislação",
-"Compliance"
-],
-
-tecnologias: [
-"PJe",
-"e-SAJ"
-],
-
-ats: [
-"Contratos",
-"LGPD",
-"Compliance"
+"Analista Jurídico",
+"Coordenador Jurídico"
 ]
+},
 
+administrativo: {
+cargos: [
+"Assistente Administrativo",
+"Analista Administrativo",
+"Supervisor Administrativo",
+"Gerente Administrativo"
+]
 },
 
 engenharia: {
-nome: "Engenharia",
-
 cargos: [
 "Engenheiro Civil",
 "Engenheiro Mecânico",
 "Engenheiro Elétrico",
-"Projetista"
-],
-
-competencias: [
-"Projetos",
-"Cálculos",
-"Gestão de Obras"
-],
-
-tecnologias: [
-"AutoCAD",
-"Revit",
-"MS Project"
-],
-
-ats: [
-"Projetos",
-"Planejamento",
-"Qualidade"
+"Engenheiro Produção",
+"Engenheiro Ambiental",
+"Engenheiro Automação"
 ]
-
 },
 
 logistica: {
-nome: "Logística",
-
 cargos: [
-"Analista de Logística",
+"Analista Logístico",
+"Coordenador Logístico",
+"Supervisor Estoque",
+"Gerente Supply Chain"
+]
+},
+
+compras: {
+cargos: [
 "Comprador",
-"Supply Chain",
-"Supervisor de Estoque"
-],
-
-competencias: [
-"Planejamento",
-"Controle",
-"Distribuição"
-],
-
-tecnologias: [
-"WMS",
-"ERP",
-"Excel"
-],
-
-ats: [
-"Supply Chain",
-"Inventário",
-"Distribuição"
+"Analista Compras",
+"Coordenador Compras",
+"Gerente Compras"
 ]
-
-},
-
-saude: {
-nome: "Saúde",
-
-cargos: [
-"Enfermeiro",
-"Técnico de Enfermagem",
-"Farmacêutico",
-"Fisioterapeuta"
-],
-
-competencias: [
-"Atendimento",
-"Empatia",
-"Cuidados"
-],
-
-tecnologias: [
-"Prontuário Eletrônico"
-],
-
-ats: [
-"Paciente",
-"Triagem",
-"Medicamentos"
-]
-
-},
-
-educacao: {
-nome: "Educação",
-
-cargos: [
-"Professor",
-"Tutor",
-"Instrutor",
-"Coordenador Pedagógico"
-],
-
-competencias: [
-"Didática",
-"Comunicação",
-"Planejamento"
-],
-
-tecnologias: [
-"Google Classroom",
-"Moodle"
-],
-
-ats: [
-"Ensino",
-"Aprendizagem",
-"Avaliação"
-]
-
 },
 
 atendimento: {
-nome: "Atendimento",
-
 cargos: [
 "Atendente",
-"SAC",
-"Customer Success",
-"Suporte Técnico"
-],
-
-competencias: [
-"Empatia",
-"Comunicação",
-"Resolução de Problemas"
-],
-
-tecnologias: [
-"Zendesk",
-"CRM"
-],
-
-ats: [
-"NPS",
-"SAC",
-"Pós-venda"
+"Operador SAC",
+"Suporte Técnico",
+"Customer Service"
 ]
+},
 
+customerSuccess: {
+cargos: [
+"Customer Success",
+"Customer Success Manager",
+"Customer Experience"
+]
+},
+
+saude: {
+cargos: [
+"Médico",
+"Enfermeiro",
+"Técnico Enfermagem",
+"Fisioterapeuta",
+"Nutricionista",
+"Psicólogo",
+"Farmacêutico"
+]
+},
+
+educacao: {
+cargos: [
+"Professor",
+"Coordenador Pedagógico",
+"Diretor Escolar",
+"Tutor EAD"
+]
+},
+
+seguranca: {
+cargos: [
+"Vigilante",
+"Supervisor Segurança",
+"Analista Segurança Patrimonial"
+]
+},
+
+industria: {
+cargos: [
+"Operador Produção",
+"Líder Produção",
+"Supervisor Produção",
+"Gerente Industrial"
+]
+},
+
+agronegocio: {
+cargos: [
+"Engenheiro Agrônomo",
+"Técnico Agrícola",
+"Gerente Fazenda",
+"Consultor Agronegócio"
+]
+},
+
+hotelaria: {
+cargos: [
+"Recepcionista",
+"Supervisor Hotel",
+"Gerente Hotel"
+]
+},
+
+gastronomia: {
+cargos: [
+"Cozinheiro",
+"Chef",
+"Auxiliar Cozinha",
+"Gerente Restaurante"
+]
+},
+
+turismo: {
+cargos: [
+"Agente Turismo",
+"Guia Turismo",
+"Consultor Viagens"
+]
+},
+
+transporte: {
+cargos: [
+"Motorista",
+"Motorista Carreta",
+"Coordenador Frota",
+"Gestor Transporte"
+]
+},
+
+ecommerce: {
+cargos: [
+"Analista Ecommerce",
+"Gestor Marketplace",
+"Especialista Shopify"
+]
+},
+
+bancario: {
+cargos: [
+"Caixa Bancário",
+"Gerente Conta",
+"Especialista Crédito",
+"Analista Investimentos"
+]
+},
+
+seguros: {
+cargos: [
+"Corretor Seguros",
+"Analista Sinistros",
+"Gerente Seguros"
+]
+},
+
+telecom: {
+cargos: [
+"Técnico Telecom",
+"Engenheiro Telecom",
+"Analista Redes"
+]
+},
+
+energia: {
+cargos: [
+"Eletricista",
+"Engenheiro Energia",
+"Analista Energia"
+]
+},
+
+design: {
+cargos: [
+"Designer Gráfico",
+"UX Designer",
+"UI Designer",
+"Diretor Arte"
+]
+},
+
+arquitetura: {
+cargos: [
+"Arquiteto",
+"Projetista",
+"Urbanista"
+]
+},
+
+eventos: {
+cargos: [
+"Organizador Eventos",
+"Produtor Eventos",
+"Coordenador Eventos"
+]
+},
+
+moda: {
+cargos: [
+"Estilista",
+"Modelista",
+"Consultor Moda"
+]
+},
+
+beleza: {
+cargos: [
+"Cabeleireiro",
+"Barbeiro",
+"Manicure",
+"Esteticista"
+]
+},
+
+imobiliario: {
+cargos: [
+"Corretor Imóveis",
+"Consultor Imobiliário",
+"Gerente Imobiliário"
+]
 }
 
 };
-
-if (typeof module !== "undefined") {
-module.exports = vagas;
-}
