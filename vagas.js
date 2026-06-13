@@ -1,35 +1,83 @@
-
 const vagas = {
 
 python: [
 "Explique orientação a objetos",
-"Como funciona uma API REST?",
-"O que são decorators?"
+"O que são APIs REST",
+"Como funciona Docker",
+"Como funciona Git",
+"O que são decorators"
 ],
 
 dados: [
 "Explique JOIN",
 "Explique ETL",
-"Como otimizar SQL?"
+"Como otimizar SQL",
+"Power BI",
+"Modelagem de dados"
+],
+
+frontend: [
+"React",
+"JavaScript",
+"HTML",
+"CSS",
+"Virtual DOM"
+],
+
+backend: [
+"Node.js",
+"API REST",
+"Banco de dados",
+"Autenticação JWT",
+"Microserviços"
 ],
 
 marketing: [
-"Como medir ROI?",
-"Explique funil de vendas",
-"O que é CAC?"
+"ROI",
+"CAC",
+"Funil de vendas",
+"Google Ads",
+"Meta Ads"
 ],
 
 financeiro: [
-"Explique fluxo de caixa",
-"Como calcular margem líquida?",
-"Como analisar DRE?"
+"Fluxo de caixa",
+"DRE",
+"Margem líquida",
+"EBITDA",
+"Indicadores financeiros"
 ],
 
 rh: [
-"Como conduzir entrevistas?",
-"Como reduzir turnover?",
-"Como avaliar desempenho?"
+"Recrutamento",
+"Turnover",
+"People Analytics",
+"Feedback",
+"Avaliação de desempenho"
+],
+
+comercial: [
+"Prospecção",
+"Funil de vendas",
+"CRM",
+"Negociação",
+"Fechamento"
+],
+
+gestao: [
+"Liderança",
+"KPIs",
+"Planejamento",
+"Estratégia",
+"Gestão de equipes"
+],
+
+atendimento: [
+"Experiência do cliente",
+"SAC",
+"NPS",
+"Resolução de conflitos",
+"Pós-venda"
 ]
 
 };
-
