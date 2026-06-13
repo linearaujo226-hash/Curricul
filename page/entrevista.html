@@ -173,6 +173,9 @@ let perguntas = [
 "Qual foi seu maior resultado profissional?"
 
 ];
+if(plano === "pro" && chave && perguntas[chave]){
+    perguntasLista.push(...perguntas[chave]);
+}
 
 if(nivel === "Intermediário"){
 
@@ -206,7 +209,9 @@ perguntas.push(
    MODO PRO IA
 =========================== */
 
-if(plano === "pro"){
+if(plano === "pro" && perguntas[chave]){
+    perguntasLista.push(...perguntas[chave]);
+}
 
 if(
 cargo.toLowerCase().includes("python")
@@ -306,6 +311,8 @@ perguntas.push(
 
 if(vaga.includes("docker")){
 
+
+
 perguntas.push(
 "Como funciona a conteinerização?"
 );
@@ -319,9 +326,45 @@ perguntas.push(
 );
 
 }
+perguntasLista = [...new Set(perguntasLista)];
 
 }
+// Detecta área
+const mapaCargos = {
+  "desenvolvedor python": "tecnologia",
+  "programador": "tecnologia",
+  "analista de sistemas": "tecnologia",
+
+  "analista de dados": "dados",
+  "cientista de dados": "dados",
+
+  "analista financeiro": "financeiro",
+  "assistente financeiro": "financeiro",
+
+  "assistente de rh": "rh",
+  "recrutador": "rh",
+
+  "vendedor": "comercial",
+  "consultor comercial": "comercial",
+
+  "advogado": "juridico",
+
+  "enfermeiro": "saude",
+  "tecnico de enfermagem": "saude",
+
+  "professor": "educacao",
+
+  "engenheiro civil": "engenharia"
+};
+
 let chave = "";
+
+for(const cargoMapeado in mapaCargos){
+    if(cargo.toLowerCase().includes(cargoMapeado)){
+        chave = mapaCargos[cargoMapeado];
+        break;
+    }
+}
 
 if(cargo.toLowerCase().includes("python")){
 chave = "python";
