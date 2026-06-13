@@ -15,10 +15,14 @@ const campos = [
 
 campos.forEach(id => {
 
-let elemento = document.getElementById(id);
+const elemento =
+document.getElementById(id);
 
 if(elemento){
-localStorage.setItem(id, elemento.value);
+localStorage.setItem(
+id,
+elemento.value
+);
 }
 
 });
@@ -42,7 +46,8 @@ const campos = [
 
 campos.forEach(id => {
 
-let elemento = document.getElementById(id);
+const elemento =
+document.getElementById(id);
 
 if(elemento){
 elemento.value =
@@ -52,12 +57,6 @@ localStorage.getItem(id) || "";
 });
 
 }
-
-window.onload = carregarDados;
-
-/* =========================
-   DASHBOARD
-========================= */
 
 function obterDashboard(){
 
@@ -91,3 +90,54 @@ h => h.tipo === "carta"
 };
 
 }
+
+function atualizarDashboard(){
+
+const dados =
+obterDashboard();
+
+const curriculos =
+document.getElementById(
+"totalCurriculos"
+);
+
+const entrevistas =
+document.getElementById(
+"totalEntrevistas"
+);
+
+const analises =
+document.getElementById(
+"totalAnalises"
+);
+
+const cartas =
+document.getElementById(
+"totalCartas"
+);
+
+if(curriculos)
+curriculos.innerText =
+dados.curriculos;
+
+if(entrevistas)
+entrevistas.innerText =
+dados.entrevistas;
+
+if(analises)
+analises.innerText =
+dados.analises;
+
+if(cartas)
+cartas.innerText =
+dados.cartas;
+
+}
+
+window.addEventListener(
+"DOMContentLoaded",
+() => {
+carregarDados();
+atualizarDashboard();
+}
+);
