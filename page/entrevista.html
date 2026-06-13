@@ -367,7 +367,7 @@ chave = "gestao";
 if(plano === "pro" && chave){
 perguntas.push(...perguntasPremium[chave]);
 }
-
+perguntas = [...new Set(perguntas)];
    
 /* ===========================
    SCORE
@@ -386,6 +386,10 @@ score += 40;
 if(cargo.length > 3){
 score += 10;
 }
+if(vaga.includes("python")) score += 5;
+if(vaga.includes("sql")) score += 5;
+if(vaga.includes("power bi")) score += 5;
+if(vaga.includes("liderança")) score += 5;
 
 if(score > 100){
 score = 100;
