@@ -215,10 +215,47 @@ async function baixarArquivo() {
     
     <input type="text" id="linkedin" placeholder="LinkedIn" oninput="salvarDados()">
     
-    <textarea id="formacao" placeholder="Formação Acadêmica" oninput="salvarDados()"></textarea>
+    <h3>Formação Acadêmica</h3>
+
+    <input type="text"
+    id="escolaridade"
+    placeholder="Ex: Ensino Médio Completo">
+
+    <input type="text"
+    id="instituicao"
+    placeholder="Instituição">
+
+    <input type="text"
+    id="curso"
+    placeholder="Curso">
+    <h3>Experiência Profissional</h3>
+
+    <h3>Cursos</h3>
+
+    <textarea id="cursos"
+    placeholder="Um curso por linha">
+    </textarea>
+
+    <input
+    type="text"
+    id="objetivo"
+    placeholder="Objetivo Profissional">
     
-    <textarea id="experiencia" placeholder="Experiência Profissional" oninput="salvarDados()"></textarea>
-    
+    <input type="text" id="empresa1" placeholder="Empresa">
+
+    <input type="text" id="cargo1" placeholder="Cargo">
+
+    <input type="text" id="periodo1" placeholder="Período">
+
+    <textarea id="descricao1"
+    placeholder="Descrição das atividades">
+    </textarea>
+
+    <button type="button" onclick="adicionarExperiencia()">
+    + Adicionar Experiência
+    </button>
+
+    <div id="experiencias"></div>
     <textarea id="habilidades" placeholder="Habilidades" oninput="salvarDados()"></textarea>
     
     <textarea id="conquistas" placeholder="Principais Conquistas" oninput="salvarDados()"></textarea>
