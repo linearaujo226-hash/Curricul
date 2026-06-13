@@ -1,0 +1,71 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard - Contrata+ IA</title>
+
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+<header>
+<h1>📊 Dashboard Contrata+ IA</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Resumo</h2>
+
+<p>
+Entrevistas:
+<strong id="entrevistas">0</strong>
+</p>
+
+<p>
+Currículos:
+<strong id="curriculos">0</strong>
+</p>
+
+<p>
+Análises ATS:
+<strong id="analises">0</strong>
+</p>
+
+<p>
+Ranking:
+<strong id="ranking">-</strong>
+</p>
+
+</div>
+
+</div>
+
+<script src="../assets/app.js"></script>
+
+<script>
+
+const dados = obterDashboard();
+
+document.getElementById("entrevistas")
+.innerText = dados.entrevistas;
+
+document.getElementById("curriculos")
+.innerText = dados.curriculos;
+
+document.getElementById("analises")
+.innerText = dados.analises;
+
+document.getElementById("ranking")
+.innerText = "🥈 Top 25%";
+
+</script>
+
+</body>
+</html>
+```
