@@ -144,8 +144,14 @@ document.getElementById("nivel").value;
 let plano =
 document.getElementById("plano").value;
 
-if(cargo === ""){
 
+
+let historico =
+JSON.parse(
+localStorage.getItem("ultimaEntrevista") || "null"
+);
+   
+if(cargo === ""){
 document.getElementById("resultado").innerHTML = `
 <div class="card">
 <h3>⚠️ Informe o cargo.</h3>
@@ -361,14 +367,48 @@ chave = "frontend";
 else if(cargo.toLowerCase().includes("gest")){
 chave = "gestao";
 }
+let areaDetectada = "Geral";
+
+if(chave === "python"){
+areaDetectada = "Desenvolvimento Python";
+}
+
+if(chave === "dados"){
+areaDetectada = "Análise de Dados";
+}
+
+if(chave === "frontend"){
+areaDetectada = "Front-End";
+}
+
+if(chave === "gestao"){
+areaDetectada = "Gestão";
+}
 
 
 // Somente Plano Pro
 if(plano === "pro" && chave){
 perguntas.push(...perguntasPremium[chave]);
 }
-perguntas = [...new Set(perguntas)];
 
+   
+/* ===========================
+   SCORE
+=========================== */
+
+let score = 40;
+
+if(nivel === "Intermediário") score += 15;
+if(nivel === "Sênior") score += 25;
+
+if(vaga.includes("python")) score += 5;
+if(vaga.includes("sql")) score += 5;
+if(vaga.includes("aws")) score += 5;
+if(vaga.includes("docker")) score += 5;
+if(vaga.includes("git")) score += 5;
+
+score = Math.min(score, 100);
+   
 let corScore = "#ef4444";
 
 if(score >= 80){
@@ -376,33 +416,11 @@ corScore = "#22c55e";
 }
 else if(score >= 60){
 corScore = "#f59e0b";
-}
-   
-/* ===========================
-   SCORE
-=========================== */
+}   
 
-let score = 50;
+perguntas = [...new Set(perguntas)];
 
-if(nivel === "Intermediário"){
-score += 20;
-}
 
-if(nivel === "Sênior"){
-score += 40;
-}
-
-if(cargo.length > 3){
-score += 10;
-}
-if(vaga.includes("python")) score += 5;
-if(vaga.includes("sql")) score += 5;
-if(vaga.includes("power bi")) score += 5;
-if(vaga.includes("liderança")) score += 5;
-
-if(score > 100){
-score = 100;
-}
 
 // COLE AQUI
 let feedback = "";
@@ -418,6 +436,26 @@ feedback =
 else{
 feedback =
 "⚠️ Recomendado praticar mais entrevistas.";
+}
+let recomendacao = "";
+
+if(score >= 90){
+
+recomendacao =
+"Você está pronto para processos seletivos avançados.";
+
+}
+else if(score >= 70){
+
+recomendacao =
+"Continue praticando entrevistas técnicas.";
+
+}
+else{
+
+recomendacao =
+"Fortaleça currículo e comunicação.";
+
 }
 
    
@@ -436,12 +474,15 @@ else{
 nivelEntrevista = "📚 Iniciante";
 }
    
-let totalPerguntas = perguntas.length;
-let perguntasPremiumCount =
-totalPerguntas > 10
-? totalPerguntas - 10
-: 0;
+let totalPerguntas = perguntas.length; 
+let tempoEstimado = totalPerguntas * 2;
+const perguntasBase = 4;
 
+let perguntasPremiumCount =
+plano === "pro"
+? Math.max(totalPerguntas - perguntasBase, 0)
+: 0;
+   
 let ranking = "";
 
 if(score >= 95){
@@ -456,7 +497,32 @@ ranking = "🥈 Top 25%";
 else{
 ranking = "🥉 Top 50%";
 }
+let tecnico =
+Math.min(score + 5,100);
 
+let comunicacao =
+Math.max(score - 5,0);
+
+let lideranca =
+nivel === "Sênior"
+? 90
+: 70;
+   
+localStorage.setItem(
+"ultimaEntrevista",
+JSON.stringify({
+cargo,
+nivel,
+plano,
+score,
+data:new Date().toLocaleString("pt-BR")
+})
+);
+
+historico =
+JSON.parse(
+localStorage.getItem("ultimaEntrevista")
+);
    
    
 /* ===========================
@@ -524,6 +590,13 @@ ${perguntas.map(p => `
 </ul>
 
 <h3>🏆 Aprovação Estimada</h3>
+<p style="
+font-size:24px;
+font-weight:bold;
+color:${corScore};
+">
+${score}%
+</p>
 
 <h3>🤖 Feedback da IA</h3>
 
@@ -534,6 +607,16 @@ border-radius:10px;
 font-weight:bold;
 ">
 ${feedback}
+</p>
+
+<h3>💡 Recomendação da IA</h3>
+
+<p style="
+background:#ecfeff;
+padding:15px;
+border-radius:10px;
+">
+${recomendacao}
 </p>
 
 <h3>🎖️ Nível Profissional</h3>
@@ -549,6 +632,16 @@ ${nivelEntrevista}
 <h3>📊 Estatísticas da Simulação</h3>
 
 <ul>
+
+<li>
+Área Detectada:
+<strong>${areaDetectada}</strong>
+</li>
+
+<li>
+Tempo Estimado:
+<strong>${tempoEstimado} min</strong>
+</li>
 
 <li>
 Total de Perguntas:
@@ -590,6 +683,70 @@ score >= 60 ? "🥈 Prata" :
 "🥉 Bronze"}
 </p>
 
+<h3>📈 Avaliação por Competência</h3>
+
+<ul>
+
+<li>
+Técnico:
+<strong>${tecnico}%</strong>
+
+<div class="barra">
+<div class="progresso"
+style="
+width:${tecnico}%;
+background:#2563eb;
+">
+</div>
+</div>
+
+</li>
+<li>
+Comunicação:
+<strong>${comunicacao}%</strong>
+
+<div class="barra">
+<div class="progresso"
+style="
+width:${comunicacao}%;
+background:#22c55e;
+">
+</div>
+</div>
+
+</li>
+
+<li>
+Liderança:
+<strong>${lideranca}%</strong>
+
+<div class="barra">
+<div class="progresso"
+style="
+width:${lideranca}%;
+background:#f59e0b;
+">
+</div>
+</div>
+
+</li>
+
+</ul>
+
+<h3>🕒 Última Simulação</h3>
+
+<p style="
+background:#f8fafc;
+padding:10px;
+border-radius:8px;
+">
+${historico
+? historico.cargo + " | " +
+historico.score + "% | " +
+historico.data
+: "Nenhum histórico encontrado"}
+</p>
+
 <h3>🌎 Ranking Geral</h3>
 
 <p style="
@@ -599,13 +756,38 @@ color:#2563eb;
 ">
 ${ranking}
 </p>
-   
+${score >= 80 ? `
+
+<div style="
+margin-top:20px;
+padding:15px;
+border:2px solid #22c55e;
+border-radius:10px;
+text-align:center;
+background:#f0fdf4;
+">
+
+<h3>🏅 Certificado de Aprovação</h3>
+
+<p>
+Parabéns! Você atingiu
+<strong>${score}%</strong>
+de compatibilidade.
+</p>
+
+</div>
+
+` : ""}
+
 
 <div class="barra">
 
 <div
 class="progresso"
-style="width:${score}%;">
+style="
+width:${score}%;
+background:${corScore};
+">
 </div>
 
 </div>
@@ -619,6 +801,9 @@ de compatibilidade.
 </p>
 
 </div>
+
+
+
 
 `;
 
