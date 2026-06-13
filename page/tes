@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contrata+ IA - Entrevista</title>
+
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+<header>
+<h1>🎤 Contrata+ IA</h1>
+</header>
+
+<div class="container">
+
+<h2>Simulador Inteligente de Entrevistas</h2>
+
+<input
+type="text"
+id="cargo"
+placeholder="Digite seu cargo">
+
+<textarea
+id="vaga"
+placeholder="Cole a descrição da vaga">
+</textarea>
+
+<select id="nivel">
+<option>Iniciante</option>
+<option>Intermediário</option>
+<option>Sênior</option>
+</select>
+
+<select id="plano">
+<option value="gratis">🆓 Gratuito</option>
+<option value="pro">🚀 Pro IA</option>
+</select>
+
+<button onclick="gerarEntrevista()">
+Iniciar Simulação
+</button>
+
+<div id="resultado"></div>
+
+</div>
+
+<script src="../data/cargos.js"></script>
+<script src="../data/vagas.js"></script>
+<script src="../data/perguntas.js"></script>
+<script src="../assets/entrevista.js"></script>
+
+</body>
+</html>
